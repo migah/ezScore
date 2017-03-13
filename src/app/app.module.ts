@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import {UserService} from "./users/user.service";
+import { Routes, RouterModule } from "@angular/router";
+import { HomeComponent } from './home/home.component';
 
 
 export const firebaseConfig = {
@@ -20,18 +22,25 @@ export const firebaseConfig = {
   messagingSenderId: "193310380995"
 };
 
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'users', component: UsersComponent },
+];
+
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     MaterialModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    RouterModule.forRoot(routes)
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
