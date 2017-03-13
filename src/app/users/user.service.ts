@@ -9,6 +9,15 @@ export class UserService {
 
   constructor(private af: AngularFire) { }
 
+  addUser(user: User) {
+    this.af.database.list('users').push({
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      phone: user.phone
+    });
+  }
+
   getUsers() : Observable<User[]>{
     return this.af.database.list('users');
   }

@@ -1,6 +1,62 @@
 <ez-toolbar></ez-toolbar>
+<div *ngIf="!newUser">
+  <button md-button (click)="switchNewUser()">Tilføj bruger</button>
+</div>
+<md-card *ngIf="newUser">
+  <md-input-container>
+    <input mdInput type="text" placeholder="Username" [(ngModel)]="userNew.username">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="text" placeholder="Email" [(ngModel)]="userNew.email">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="password" placeholder="Password" [(ngModel)]="userNew.password">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="number" placeholder="Phonenumber" [(ngModel)]="userNew.phone">
+  </md-input-container>
+  <md-card-actions>
+    <button md-button (click)="addUser()">Add</button>
+  </md-card-actions>
+</md-card>
 <md-card *ngFor="let user of users | async">
-  <md-card-title><i class="fa fa-user"></i> {{user.username}}</md-card-title>
-  <md-card-content><i class="fa fa-envelope-o"></i> {{user.email}}</md-card-content>
-  <md-card-content><i class="fa fa-phone"></i> {{user.phone}}</md-card-content>
+  <md-card-title>
+    <div *ngIf="!edit">
+      <i class="fa fa-user"></i> {{user.username}}
+    </div>
+    <div *ngIf="edit">
+      <i class="fa fa-user"></i>
+      <md-input-container>
+        <input mdInput type="text" [(ngModel)]="user.username">
+      </md-input-container>
+    </div>
+  </md-card-title>
+
+  <md-card-content><div *ngIf="!edit">
+    <i class="fa fa-envelope-o"></i> {{user.email}}
+  </div>
+    <div *ngIf="edit">
+      <i class="fa fa-envelope-o"></i>
+      <md-input-container>
+        <input mdInput type="text" [(ngModel)]="user.email">
+      </md-input-container>
+    </div></md-card-content>
+  <md-card-content><div *ngIf="!edit">
+    <i class="fa fa-phone"></i> {{user.phone}}
+  </div>
+    <div *ngIf="edit">
+      <i class="fa fa-phone"></i>
+      <md-input-container>
+        <input mdInput type="number" [(ngModel)]="user.phone">
+      </md-input-container>
+    </div></md-card-content>
+  <md-card-actions><button md-button (click)="editUser()">
+    <div *ngIf="!edit">
+      Edit
+    </div>
+    <div *ngIf="edit">
+      Save
+    </div>
+  </button>
+  <button md-button (click)="deleteUser(user)">Delete</button></md-card-actions>
 </md-card>
