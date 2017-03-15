@@ -1,0 +1,42 @@
+<ez-toolbar></ez-toolbar>
+<div fxFlexFill [fxLayout]="'column'">
+  <div fxFlexFill [fxLayout]="'row'" fxLayoutAlign="center center">
+    <md-card style="margin: 0;width: 200px;">
+      <div *ngIf="!tryingToLogIn">
+        <i class="fa fa-lock"></i>
+        Login
+        <p *ngIf="signInError && signInError.length > 0" class="error-message">
+          <i class="fa fa-exclamation-circle"></i>
+          {{signInError}}
+        </p>
+        <form (ngSubmit)="tryLogin($event)">
+          <md-card-content>
+            <md-input-container>
+              <input mdInput
+                     placeholder="Username"
+                     name="userName"
+                     [(ngModel)]="user.email">
+            </md-input-container>
+            <md-input-container>
+              <input mdInput
+                     placeholder="Password"
+                     name="password"
+                     type="password"
+                     [(ngModel)]="user.password">
+            </md-input-container>
+
+          </md-card-content>
+          <md-card-actions class="example-button-row" fxLayoutAlign="center center">
+            <!--<button type="button" class="login-button" md-button routerLink="/lostPassword">Lost password</button>-->
+            <button type="submit" md-raised-button color="primary" >Sign in</button>
+          </md-card-actions>
+        </form>
+      </div>
+      <div *ngIf="tryingToLogIn" fxFlexFill [fxLayout]="'column'" fxLayoutAlign="center center">
+        <h3><i class="fa fa-handshake-o"></i> We are login in, thanks for your patience</h3>
+        <h3><md-spinner></md-spinner></h3>
+      </div>
+    </md-card>
+  </div>
+</div>
+

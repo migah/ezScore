@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFire} from "angularfire2";
 import {Observable} from "rxjs";
 import {User} from "./user";
+import {isUndefined} from "util";
 
 @Injectable()
 export class UserService {
@@ -14,7 +15,8 @@ export class UserService {
       username: user.username,
       email: user.email,
       password: user.password,
-      phone: user.phone
+      phone: user.phone,
+      role: user.role
     });
   }
 
@@ -27,11 +29,12 @@ export class UserService {
   }
 
   deleteUser($key : string) {
-    return this.af.database.object('users/' + $key).remove();
+    if ($key => !isUndefined) {
+      this.af.database.object('users/' + $key).remove();
+    }
   }
 
   editUser($key: string) {
     var editedUser = this.af.database.object('users/' + $key);
-
   }
 }

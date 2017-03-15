@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 import {AngularFireModule, AuthProviders, AuthMethods} from 'angularfire2';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
@@ -12,7 +13,15 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import {UserService} from "./users/user.service";
 import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { LoginViewComponent } from './login/login-view/login-view.component';
+import {AuthService} from "./login/auth.service";
+import {RoleService} from "./role/role.service";
 
+export const firebaseLoginConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password
+}
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAuc5rwwKnV6v-15no519R0XdR1ImSx2HU",
@@ -25,6 +34,7 @@ export const firebaseConfig = {
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
@@ -32,17 +42,20 @@ const routes: Routes = [
     AppComponent,
     UsersComponent,
     ToolbarComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    LoginViewComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     MaterialModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    RouterModule.forRoot(routes)
+    AngularFireModule.initializeApp(firebaseConfig, firebaseLoginConfig),
+    RouterModule.forRoot(routes),
+    FlexLayoutModule
   ],
-  providers: [UserService],
+  providers: [UserService, AuthService, RoleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,17 +15,22 @@
   <md-input-container>
     <input mdInput type="number" placeholder="Phonenumber" [(ngModel)]="userNew.phone">
   </md-input-container>
+  <md-select placeholder="Role" [(ngModel)]="userNew.role" name="role">
+    <md-option *ngFor="let role of roles" [value]="role">
+      {{role.name}}
+    </md-option>
+  </md-select>
   <md-card-actions>
     <button md-button (click)="addUser()">Add</button>
+    <button md-button (click)="switchNewUser()">Cancel</button>
   </md-card-actions>
 </md-card>
 <md-card *ngFor="let user of users | async">
   <md-card-title>
     <div *ngIf="!edit">
-      <i class="fa fa-user"></i> {{user.username}}
+      {{user.username}}
     </div>
     <div *ngIf="edit">
-      <i class="fa fa-user"></i>
       <md-input-container>
         <input mdInput type="text" [(ngModel)]="user.username">
       </md-input-container>
@@ -49,7 +54,11 @@
       <md-input-container>
         <input mdInput type="number" [(ngModel)]="user.phone">
       </md-input-container>
-    </div></md-card-content>
+    </div>
+  </md-card-content>
+  <md-card-content>
+    <i class="fa fa-user"></i> {{user.role.name}}
+  </md-card-content>
   <md-card-actions><button md-button (click)="editUser()">
     <div *ngIf="!edit">
       Edit
