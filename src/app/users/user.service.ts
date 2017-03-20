@@ -11,12 +11,16 @@ export class UserService {
   constructor(private af: AngularFire) { }
 
   addUser(user: User) {
-    this.af.database.list('users').push({
-      username: user.username,
+    this.af.auth.createUser({
       email: user.email,
-      password: user.password,
-      phone: user.phone,
-      role: user.role
+      password: user.password}).then(res => {
+      this.af.database.object('users/' + res.uid).set({
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        phone: user.phone,
+        role: user.role
+      });
     });
   }
 
@@ -31,6 +35,7 @@ export class UserService {
   deleteUser($key : string) {
     if ($key => !isUndefined) {
       this.af.database.object('users/' + $key).remove();
+
     }
   }
 

@@ -1,7 +1,7 @@
 <md-toolbar color="primary">
   <span>ezScore</span>
   <button routerLink="/" md-button><i class="fa fa-home fa-2x"></i> Home</button>
-  <button *ngIf="isAdmin()" routerLink="/users" md-button><i class="fa fa-users fa-lg"></i> Users</button>
+  <button *ngIf="isAdmin" routerLink="/users" md-button><i class="fa fa-users fa-lg"></i> Users</button>
 
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>

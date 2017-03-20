@@ -11,4 +11,14 @@ export class RoleService {
   getRoles(): Observable<Role[]> {
     return this.af.database.list('roles');
   }
+
+  isAdmin($key: String) : Observable<boolean> {
+    return this.af.database.object('users/' + $key).switchMap(user =>
+    Observable.of(user.role.name === 'admin'));
+  }
+
+  isMod($key: String) : Observable<boolean> {
+    return this.af.database.object('users/' + $key).switchMap(user =>
+      Observable.of(user.role.name === 'admin' || user.role.name === 'mod'));
+  }
 }
