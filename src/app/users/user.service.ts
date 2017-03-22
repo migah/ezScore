@@ -10,14 +10,13 @@ export class UserService {
 
   constructor(private af: AngularFire) { }
 
-  addUser(user: User) {
+  addUser(user: User, password: string) {
     this.af.auth.createUser({
       email: user.email,
-      password: user.password}).then(res => {
+      password: password}).then(res => {
       this.af.database.object('users/' + res.uid).set({
         username: user.username,
         email: user.email,
-        password: user.password,
         phone: user.phone,
         role: user.role
       });
@@ -39,7 +38,7 @@ export class UserService {
     }
   }
 
-  editUser($key: string) {
-    var editedUser = this.af.database.object('users/' + $key);
+  editUser(user: User) {
+    this.af.database.object('users/' + user.$key).update(user);
   }
 }

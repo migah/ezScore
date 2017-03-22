@@ -17,6 +17,7 @@ export class UsersComponent implements OnInit {
   edit: boolean;
   newUser: boolean;
   userNew: User;
+  password: string;
 
   constructor(private userService : UserService, private roleService: RoleService) {
     this.users = userService.getUsers();
@@ -43,7 +44,7 @@ export class UsersComponent implements OnInit {
   }
 
   addUser() {
-    this.userService.addUser(this.userNew);
+    this.userService.addUser(this.userNew, this.password);
     this.userNew = new User();
     this.newUser = false;
   }

@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginViewComponent } from './login/login-view/login-view.component';
 import {AuthService} from "./login/auth.service";
 import {RoleService} from "./role/role.service";
+import { EditUserViewComponent } from './users/edit-user-view/edit-user-view.component';
 
 export const firebaseLoginConfig = {
   provider: AuthProviders.Password,
@@ -44,7 +45,8 @@ const routes: Routes = [
     ToolbarComponent,
     HomeComponent,
     LoginComponent,
-    LoginViewComponent
+    LoginViewComponent,
+    EditUserViewComponent
   ],
   imports: [
     BrowserModule,
