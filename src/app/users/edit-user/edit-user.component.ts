@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {User} from "../user";
 
@@ -10,7 +10,7 @@ import {User} from "../user";
 export class EditUserComponent implements OnInit {
 
   user : User;
-  constructor(private  route : ActivatedRoute, private userService : UserService) {
+  constructor(private  route : ActivatedRoute, private userService : UserService, private router: Router) {
 
   }
 
@@ -32,5 +32,6 @@ export class EditUserComponent implements OnInit {
 
   editUser(userToEdit: User){
     this.userService.editUser(userToEdit);
+    this.router.navigate(['users']);
   }
 }
