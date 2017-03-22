@@ -1,19 +1,19 @@
 <md-card>
   <md-card-title>
-    <md-input-container>
-      <input mdInput type="text" [(ngModel)]="user.username" placeholder="Username">
+    <md-input-container *ngIf="user">
+      <input  mdInput type="text" [(ngModel)]="user.username" placeholder="Username">
     </md-input-container>
   </md-card-title>
   <md-card-content>
  <i class="fa fa-envelope-o"></i>
-  <md-input-container>
-    <input mdInput type="text" [(ngModel)]="user.email">
+  <md-input-container *ngIf="user">
+    <input  mdInput type="text" [(ngModel)]="user.email">
   </md-input-container>
 </md-card-content>
   <md-card-content>
     <i class="fa fa-phone"></i>
-    <md-input-container>
-      <input mdInput type="text" [(ngModel)]="user.phone">
+    <md-input-container *ngIf="user">
+      <input  mdInput type="text" [(ngModel)]="user.phone">
     </md-input-container>
   </md-card-content>
   <md-card-actions>

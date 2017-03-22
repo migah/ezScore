@@ -17,6 +17,7 @@ export class EditUserViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
   tryEdit(){
