@@ -1,5 +1,4 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {User} from "../../users/user";
 import {AuthUser} from "../auth-user";
 
 @Component({

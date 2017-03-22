@@ -17,7 +17,8 @@ import { LoginComponent } from './login/login.component';
 import { LoginViewComponent } from './login/login-view/login-view.component';
 import {AuthService} from "./login/auth.service";
 import {RoleService} from "./role/role.service";
-import { EditUserViewComponent } from './users/edit-user-view/edit-user-view.component';
+import { EditUserViewComponent } from './users/edit-user/edit-user-view/edit-user-view.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
 
 export const firebaseLoginConfig = {
   provider: AuthProviders.Password,
@@ -35,7 +36,8 @@ export const firebaseConfig = {
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'users', component: UsersComponent },
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'users/edit/:id', component: EditUserComponent}
 ];
 
 @NgModule({
@@ -46,7 +48,8 @@ const routes: Routes = [
     HomeComponent,
     LoginComponent,
     LoginViewComponent,
-    EditUserViewComponent
+    EditUserViewComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

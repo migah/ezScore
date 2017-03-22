@@ -4,6 +4,7 @@ import {UserService} from "./user.service";
 import {Observable} from "rxjs";
 import {Role} from "../role/role";
 import {RoleService} from "../role/role.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ez-users',
@@ -19,7 +20,7 @@ export class UsersComponent implements OnInit {
   userNew: User;
   password: string;
 
-  constructor(private userService : UserService, private roleService: RoleService) {
+  constructor(private userService : UserService, private roleService: RoleService, private router: Router) {
     this.users = userService.getUsers();
     roleService.getRoles().subscribe(roles => this.roles = roles);
     this.edit = false;
@@ -30,8 +31,8 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
   }
 
-  editUser() {
-    this.edit = !this.edit;
+  editUser(user: User) {
+    this.router.navigate(['/users/edit/' + user.$key]);
   }
 
   deleteUser(user: User) {

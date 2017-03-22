@@ -59,7 +59,7 @@
   <md-card-content>
     <i class="fa fa-user"></i> {{user.role.name}}
   </md-card-content>
-  <md-card-actions><button md-button (click)="editUser()">
+  <md-card-actions><button md-button (click)="editUser(user)">
     <div *ngIf="!edit">
       Edit
     </div>
