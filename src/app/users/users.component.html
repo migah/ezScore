@@ -27,45 +27,19 @@
 </md-card>
 <md-card *ngFor="let user of users | async">
   <md-card-title>
-    <div *ngIf="!edit">
-      {{user.username}}
-    </div>
-    <div *ngIf="edit">
-      <md-input-container>
-        <input mdInput type="text" [(ngModel)]="user.username">
-      </md-input-container>
-    </div>
+    {{user.username}}
   </md-card-title>
-
-  <md-card-content><div *ngIf="!edit">
+  <md-card-content>
     <i class="fa fa-envelope-o"></i> {{user.email}}
-  </div>
-    <div *ngIf="edit">
-      <i class="fa fa-envelope-o"></i>
-      <md-input-container>
-        <input mdInput type="text" [(ngModel)]="user.email">
-      </md-input-container>
-    </div></md-card-content>
-  <md-card-content><div *ngIf="!edit">
+  </md-card-content>
+  <md-card-content>
     <i class="fa fa-phone"></i> {{user.phone}}
-  </div>
-    <div *ngIf="edit">
-      <i class="fa fa-phone"></i>
-      <md-input-container>
-        <input mdInput type="number" [(ngModel)]="user.phone">
-      </md-input-container>
-    </div>
   </md-card-content>
   <md-card-content>
     <i class="fa fa-user"></i> {{user.role.name}}
   </md-card-content>
-  <md-card-actions><button md-button (click)="editUser(user)">
-    <div *ngIf="!edit">
-      Edit
-    </div>
-    <div *ngIf="edit">
-      Save
-    </div>
-  </button>
-  <button md-button (click)="deleteUser(user)">Delete</button></md-card-actions>
+  <md-card-actions>
+    <button md-button (click)="editUser(user)">Edit</button>
+    <button md-button (click)="deleteUser(user)">Delete</button>
+  </md-card-actions>
 </md-card>

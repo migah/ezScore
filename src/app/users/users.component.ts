@@ -15,7 +15,6 @@ export class UsersComponent implements OnInit {
 
   users: Observable<User[]>;
   roles: Role[];
-  edit: boolean;
   newUser: boolean;
   userNew: User;
   password: string;
@@ -23,7 +22,6 @@ export class UsersComponent implements OnInit {
   constructor(private userService : UserService, private roleService: RoleService, private router: Router) {
     this.users = userService.getUsers();
     roleService.getRoles().subscribe(roles => this.roles = roles);
-    this.edit = false;
     this.newUser = false;
     this.userNew = new User();
   }
