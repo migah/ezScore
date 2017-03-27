@@ -23,7 +23,7 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
 export const firebaseLoginConfig = {
   provider: AuthProviders.Password,
   method: AuthMethods.Password
-}
+};
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAuc5rwwKnV6v-15no519R0XdR1ImSx2HU",
