@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (user) => {
           this.loginError = null;
-          this.router.navigate(['users']);
+          this.router.navigate([""]);
         },
         (err) => {
           this.loginError = "Username or password is incorrect"

@@ -33,6 +33,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   logout() {
+    this.isAdmin = false;
     this.authService.logout().subscribe(() => this.router.navigate(['']))
   }
 }
