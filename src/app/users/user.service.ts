@@ -3,22 +3,30 @@ import {AngularFire} from "angularfire2";
 import {Observable} from "rxjs";
 import {User} from "./user";
 import {isUndefined} from "util";
+import {firebaseConfig} from "../app.module";
+let firebase = require("firebase");
 
 @Injectable()
 export class UserService {
 
-
+  app;
   constructor(private af: AngularFire) { }
 
   addUser(user: User, password: string) {
-    this.af.auth.createUser({
-      email: user.email,
-      password: password}).then(res => {
+    if (!this.app) {
+      this.app = firebase.initializeApp(firebaseConfig, "secondary");
+    }
+    this.app.auth().createUserWithEmailAndPassword(user.profile.email, password)
+      .then(res => {
       this.af.database.object('users/' + res.uid).set({
-        username: user.username,
-        email: user.email,
-        phone: user.phone,
-        role: user.role
+        profile: {
+          email: user.profile.email,
+          username: user.profile.username,
+          phone: user.profile.phone
+        },
+        role:{
+          name: user.role.name
+        }
       });
     });
   }

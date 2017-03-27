@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {Role} from "../role/role";
 import {RoleService} from "../role/role.service";
 import {Router} from "@angular/router";
+import {Profile} from "./profile";
 
 @Component({
   selector: 'ez-users',
@@ -17,6 +18,7 @@ export class UsersComponent implements OnInit {
   roles: Role[];
   newUser: boolean;
   userNew: User;
+  initialProfile: Profile;
   password: string;
 
   constructor(private userService : UserService, private roleService: RoleService, private router: Router) {
@@ -24,6 +26,7 @@ export class UsersComponent implements OnInit {
     roleService.getRoles().subscribe(roles => this.roles = roles);
     this.newUser = false;
     this.userNew = new User();
+    this.initialProfile = new Profile();
   }
 
   ngOnInit() {
@@ -43,6 +46,7 @@ export class UsersComponent implements OnInit {
   }
 
   addUser() {
+    this.userNew.profile = this.initialProfile;
     this.userService.addUser(this.userNew, this.password);
     this.userNew = new User();
     this.newUser = false;

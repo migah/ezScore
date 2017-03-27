@@ -1,8 +1,8 @@
 import {Role} from "../role/role";
+import {Profile} from "./profile";
+
 export class User{
   $key: string;
-  username: string;
-  email: string;
-  phone: number;
+  profile: Profile;
   role: Role;
 }
