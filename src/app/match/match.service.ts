@@ -16,4 +16,12 @@ export class MatchService {
     return this.af.database.list('matches');
   }
 
+  editMatch(match: Match) {
+    this.af.database.object('matches/' + match.$key).update(match);
+  }
+
+  getMatch($key: string) : Observable<Match> {
+    return this.af.database.object('matches/' + $key);
+  }
+
 }

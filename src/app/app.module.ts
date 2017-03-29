@@ -22,6 +22,8 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { MatchListComponent } from './match/match-list/match-list.component';
 import { MatchListViewComponent } from './match/match-list/match-list-view/match-list-view.component';
 import {MatchService} from "./match/match.service";
+import { MatchEditComponent } from './match/match-edit/match-edit.component';
+import { MatchEditViewComponent } from './match/match-edit/match-edit-view/match-edit-view.component';
 
 export const firebaseLoginConfig = {
   provider: AuthProviders.Password,
@@ -41,7 +43,8 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'login', component: LoginComponent},
   { path: 'users/edit/:id', component: EditUserComponent},
-  { path: 'matches', component: MatchListComponent}
+  { path: 'matches', component: MatchListComponent},
+  { path: 'matches/edit/:id', component: MatchEditComponent}
 ];
 
 @NgModule({
@@ -55,7 +58,9 @@ const routes: Routes = [
     EditUserViewComponent,
     EditUserComponent,
     MatchListComponent,
-    MatchListViewComponent
+    MatchListViewComponent,
+    MatchEditComponent,
+    MatchEditViewComponent
   ],
   imports: [
     BrowserModule,

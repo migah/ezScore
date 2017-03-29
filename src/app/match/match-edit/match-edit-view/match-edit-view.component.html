@@ -1,0 +1,4 @@
+<md-input-container *ngIf="match">
+  <input mdInput type="number" [(ngModel)]="match.team1Score">
+</md-input-container>
+<button md-button (click)="tryEdit()">EDIT</button>

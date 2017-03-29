@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Observable} from "rxjs";
 import {Match} from "../../match";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ez-match-list-view',
@@ -12,12 +13,12 @@ export class MatchListViewComponent implements OnInit {
   newMatch: Match;
 
   @Input()
-  mathes: Observable<Match[]>;
+  matches: Observable<Match[]>;
 
   @Output('addMatch')
   tryCreateMatch = new EventEmitter<Match>();
 
-  constructor() {
+  constructor(private router: Router) {
     this.newMatch = new Match();
   }
 
@@ -31,4 +32,7 @@ export class MatchListViewComponent implements OnInit {
     this.tryCreateMatch.emit(this.newMatch)
   }
 
+  goToEdit($key: string) {
+    this.router.navigate(['matches/edit/' + $key]);
+  }
 }

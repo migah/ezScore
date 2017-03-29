@@ -12,15 +12,23 @@
     <button md-button (click)="addMatch()">Add</button>
   </md-card-actions>
 </md-card>
-<div *ngFor="let match of mathes | async">
-  <md-card onclick="">
+<div *ngFor="let match of matches | async">
+  <md-card (click)="goToEdit(match.$key)">
+    <md-card-content align="center">
+      Start time: {{ match.startTime | date:"HH:mm" }}
+    </md-card-content>
     <md-card-title>
-      <div align="center">
-        {{match.team1}} {{match.team1Score}} - {{match.team2Score}} {{match.team2}}
+      <div [fxLayout]="'row'">
+        <div fxFlex="100" [fxLayout]="'column'" align="end">
+          {{match.team1}}
+        </div>
+        <div fxFlex="100" [fxLayout]="'column'" align="center">
+          {{match.team1Score}} - {{match.team2Score}}
+        </div>
+        <div fxFlex="100" [fxLayout]="'column'" align="start">
+          {{match.team2}}
+        </div>
       </div>
     </md-card-title>
-    <md-card-content align="center">
-      {{ match.startTime | date:"HH:mm" }}
-    </md-card-content>
   </md-card>
 </div>
