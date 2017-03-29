@@ -10,7 +10,6 @@ import {MatchService} from "../match.service";
 export class MatchListComponent implements OnInit {
 
   matches: Observable<Match[]>;
-  match: Match;
 
   constructor(private matchService: MatchService) {
     this.matches = matchService.getMatches();
