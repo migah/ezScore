@@ -4,5 +4,5 @@ export class Match {
   team2: string;
   team1Score: number;
   team2Score: number;
-  startTime: number;
+  startTime: Date;
 }

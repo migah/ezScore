@@ -11,6 +11,8 @@ import {Router} from "@angular/router";
 export class MatchListViewComponent implements OnInit {
 
   newMatch: Match;
+  now: Date;
+  time: Date;
 
   @Input()
   matches: Observable<Match[]>;
@@ -20,6 +22,7 @@ export class MatchListViewComponent implements OnInit {
 
   constructor(private router: Router) {
     this.newMatch = new Match();
+    this.now = new Date();
   }
 
   ngOnInit() {
@@ -28,7 +31,7 @@ export class MatchListViewComponent implements OnInit {
   addMatch() {
     this.newMatch.team1Score = 0;
     this.newMatch.team2Score = 0;
-    this.newMatch.startTime = Date.now();
+    this.newMatch.startTime = this.time;
     this.tryCreateMatch.emit(this.newMatch)
   }
 

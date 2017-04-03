@@ -23,4 +23,12 @@ export class MatchEditViewComponent implements OnInit {
     this.tryEditEmitter.emit(this.match);
   }
 
+  goalTeam1() {
+    this.match.team1Score++;
+  }
+
+  goalTeam2() {
+    this.match.team2Score++;
+  }
+
 }

@@ -1,4 +1,13 @@
-<md-input-container *ngIf="match">
-  <input mdInput type="number" [(ngModel)]="match.team1Score">
-</md-input-container>
-<button md-button (click)="tryEdit()">EDIT</button>
+<md-card align="center" *ngIf="match">
+  <button md-button (click)="goalTeam1()">Mål til {{match.team1}}</button>
+  <md-input-container >
+    <input mdInput type="number" placeholder="{{match.team1}}" [(ngModel)]="match.team1Score">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="number" placeholder="{{match.team2}}" [(ngModel)]="match.team2Score">
+  </md-input-container>
+  <button md-button (click)="goalTeam2()">Mål til {{match.team2}}</button>
+  <md-card-actions align="end">
+    <button md-button (click)="tryEdit()">EDIT</button>
+  </md-card-actions>
+</md-card>

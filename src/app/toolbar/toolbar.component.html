@@ -1,7 +1,12 @@
 <md-toolbar color="primary">
   <span>ezScore</span>
   <button routerLink="/" md-button><i class="fa fa-home fa-2x"></i> Home</button>
-  <button routerLink="/matches" md-button><i class="fa fa-list"></i> Matches</button>
+  <button md-button [mdMenuTriggerFor]="match"><i class="fa fa-list"></i> Matches</button>
+  <md-menu #match="mdMenu">
+    <button routerLink="/matches" md-menu-item>Results</button>
+    <button routerLink="/matches" md-menu-item>Live</button>
+    <button routerLink="/matches" md-menu-item>Upcoming</button>
+  </md-menu>
   <button *ngIf="isAdmin" routerLink="/users" md-button><i class="fa fa-users fa-lg"></i> Users</button>
 
   <!-- This fills the remaining space of the current row -->

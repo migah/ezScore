@@ -17,7 +17,7 @@
       "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.json",
-      "prefix": "app",
+      "prefix": "ez",
       "styles": [
         "styles.css",
         "../node_modules/font-awesome/css/font-awesome.css"

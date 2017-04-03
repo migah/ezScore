@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFire} from "angularfire2";
 import {Match} from "./match";
 import {Observable} from "rxjs";
+import {isUndefined} from "util";
 
 @Injectable()
 export class MatchService {
@@ -22,6 +23,12 @@ export class MatchService {
 
   getMatch($key: string) : Observable<Match> {
     return this.af.database.object('matches/' + $key);
+  }
+
+  deleteMatch($key: string) {
+    if ($key => !isUndefined) {
+      this.af.database.object('matches/' + $key).remove();
+    }
   }
 
 }
