@@ -24,6 +24,7 @@ import { MatchListViewComponent } from './match/match-list/match-list-view/match
 import {MatchService} from "./match/match.service";
 import { MatchEditComponent } from './match/match-edit/match-edit.component';
 import { MatchEditViewComponent } from './match/match-edit/match-edit-view/match-edit-view.component';
+import {MomentModule} from "angular2-moment";
 
 export const firebaseLoginConfig = {
   provider: AuthProviders.Password,
@@ -69,7 +70,8 @@ const routes: Routes = [
     MaterialModule,
     AngularFireModule.initializeApp(firebaseConfig, firebaseLoginConfig),
     RouterModule.forRoot(routes),
-    FlexLayoutModule
+    FlexLayoutModule,
+    MomentModule
   ],
   providers: [UserService, AuthService, RoleService, MatchService],
   bootstrap: [AppComponent]

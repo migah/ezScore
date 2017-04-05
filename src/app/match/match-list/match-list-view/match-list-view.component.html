@@ -33,7 +33,7 @@
   </md-card>
   <md-card (click)="goToEdit(match.$key)" *ngIf="cat.match('upcoming') && !live(match.startTime)">
     <md-card-content align="center" *ngIf="!live(match.startTime)">
-      Start time: {{ match.startTime | date:"MMMM d, HH:mm z"}}
+      Start time: {{ match.startTime  | amDateFormat: 'MMMM d, HH:mm z'}}
     </md-card-content>
     <md-card-title>
       <div [fxLayout]="'row'">
