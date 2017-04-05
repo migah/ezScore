@@ -30,7 +30,7 @@ export class MatchEditComponent implements OnInit {
 
   editMatch(matchToEdit: Match) {
     this.matchService.editMatch(matchToEdit);
-    this.router.navigate(['matches']);
+    this.router.navigate(['matches/live']);
   }
 
 }

@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'login', component: LoginComponent},
   { path: 'users/edit/:id', component: EditUserComponent},
-  { path: 'matches', component: MatchListComponent},
+  { path: 'matches/:cat', component: MatchListComponent},
   { path: 'matches/edit/:id', component: MatchEditComponent}
 ];
 

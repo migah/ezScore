@@ -3,9 +3,9 @@
   <button routerLink="/" md-button><i class="fa fa-home fa-2x"></i> Home</button>
   <button md-button [mdMenuTriggerFor]="match"><i class="fa fa-list"></i> Matches</button>
   <md-menu #match="mdMenu">
-    <button routerLink="/matches" md-menu-item>Results</button>
-    <button routerLink="/matches" md-menu-item>Live</button>
-    <button routerLink="/matches" md-menu-item>Upcoming</button>
+    <button routerLink="/matches/upcoming" md-menu-item>Upcoming</button>
+    <button routerLink="/matches/live" md-menu-item>Live</button>
+    <button routerLink="/matches/results" md-menu-item>Results</button>
   </md-menu>
   <button *ngIf="isAdmin" routerLink="/users" md-button><i class="fa fa-users fa-lg"></i> Users</button>
 

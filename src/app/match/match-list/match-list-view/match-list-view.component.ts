@@ -17,12 +17,15 @@ export class MatchListViewComponent implements OnInit {
   @Input()
   matches: Observable<Match[]>;
 
+  @Input()
+  cat: string;
+
   @Output('addMatch')
   tryCreateMatch = new EventEmitter<Match>();
 
   constructor(private router: Router) {
     this.newMatch = new Match();
-    this.now = new Date();
+    this.now = new Date(Date.now());
   }
 
   ngOnInit() {
@@ -37,5 +40,16 @@ export class MatchListViewComponent implements OnInit {
 
   goToEdit($key: string) {
     this.router.navigate(['matches/edit/' + $key]);
+  }
+
+  live(date: Date) : boolean {
+    var dat1 = Date.parse(date.toString());
+    var dat2 = Date.parse(this.now.toString());
+
+    if (dat1 <= dat2) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

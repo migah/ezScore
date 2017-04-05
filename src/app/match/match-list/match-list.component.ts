@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
 import {Match} from "../match";
 import {MatchService} from "../match.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'ez-match-list',
@@ -10,9 +11,11 @@ import {MatchService} from "../match.service";
 export class MatchListComponent implements OnInit {
 
   matches: Observable<Match[]>;
+  cat: string;
 
-  constructor(private matchService: MatchService) {
+  constructor(private matchService: MatchService, private route: ActivatedRoute) {
     this.matches = matchService.getMatches();
+    this.getCategori();
   }
 
   ngOnInit() {
@@ -20,6 +23,12 @@ export class MatchListComponent implements OnInit {
 
   addMatch(newMatch: Match) {
     this.matchService.addMatch(newMatch);
+  }
+
+  getCategori() {
+    this.route.params.subscribe(params => {
+      this.cat = params['cat'];
+    });
   }
 
 }

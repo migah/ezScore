@@ -1,23 +1,23 @@
 <md-card>
   <md-card-title>
     <md-input-container *ngIf="user">
-      <input  mdInput type="text" [(ngModel)]="user.username" placeholder="Username">
+      <input  mdInput type="text" [(ngModel)]="user.profile.username" placeholder="Username">
     </md-input-container>
   </md-card-title>
   <md-card-content>
  <i class="fa fa-envelope-o"></i>
   <md-input-container *ngIf="user">
-    <input  mdInput type="text" [(ngModel)]="user.email">
+    <input  mdInput type="text" [(ngModel)]="user.profile.email">
   </md-input-container>
 </md-card-content>
   <md-card-content>
     <i class="fa fa-phone"></i>
     <md-input-container *ngIf="user">
-      <input  mdInput type="text" [(ngModel)]="user.phone">
+      <input  mdInput type="text" [(ngModel)]="user.profile.phone">
     </md-input-container>
   </md-card-content>
   <md-card-actions>
     <button md-button (click)="tryEdit()">Save</button>
-    <button md-button routerLink="users">Cancel</button>
+    <button md-button routerLink="/users">Cancel</button>
   </md-card-actions>
 </md-card>

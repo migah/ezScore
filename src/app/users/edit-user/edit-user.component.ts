@@ -4,7 +4,7 @@ import {UserService} from "../user.service";
 import {User} from "../user";
 
 @Component({
-  selector: 'app-edit-user',
+  selector: 'ez-edit-user',
   templateUrl: './edit-user.component.html'
 })
 export class EditUserComponent implements OnInit {
