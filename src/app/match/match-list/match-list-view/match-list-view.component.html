@@ -16,7 +16,7 @@
   </md-card-actions>
 </md-card>
 <div *ngFor="let match of matches | async">
-  <md-card (click)="goToEdit(match.$key)" *ngIf="cat.match('live') && live(match.startTime) && !match.isFinished">
+  <md-card *ngIf="cat.match('live') && live(match.startTime) && !match.isFinished">
     <md-card-content align="center" *ngIf="live(match.startTime)">
       Live!
     </md-card-content>
@@ -34,7 +34,7 @@
       </div>
     </md-card-title>
   </md-card>
-  <md-card (click)="goToEdit(match.$key)" *ngIf="cat.match('upcoming') && !live(match.startTime) && !match.isFinished">
+  <md-card *ngIf="cat.match('upcoming') && !live(match.startTime) && !match.isFinished">
     <md-card-content align="center" *ngIf="!live(match.startTime)">
       Start time: {{ match.startTime  | amDateFormat: 'LLL'}}
     </md-card-content>
@@ -52,7 +52,7 @@
       </div>
     </md-card-title>
   </md-card>
-  <md-card (click)="goToEdit(match.$key)" *ngIf="cat.match('results') && match.isFinished">
+  <md-card *ngIf="cat.match('results') && match.isFinished">
     <md-card-content align="center">
       Result
     </md-card-content>

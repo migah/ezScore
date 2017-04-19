@@ -1,6 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Match} from "../../match";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ez-my-matches-view',
@@ -15,9 +16,13 @@ export class MyMatchesViewComponent implements OnInit {
   @Input()
   userId: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  goToEdit($key: string) {
+    this.router.navigate(['my-matches/edit/' + $key]);
   }
 
 }

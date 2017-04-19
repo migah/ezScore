@@ -42,10 +42,6 @@ export class MatchListViewComponent implements OnInit {
     this.tryCreateMatch.emit(this.newMatch)
   }
 
-  goToEdit($key: string) {
-    this.router.navigate(['matches/edit/' + $key]);
-  }
-
   live(date: Date) : boolean {
     var dat1 = Date.parse(date.toString());
     var dat2 = Date.parse(this.now.toString())

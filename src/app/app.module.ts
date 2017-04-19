@@ -47,7 +47,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'users/edit/:id', component: EditUserComponent},
   { path: 'matches/:cat', component: MatchListComponent},
-  { path: 'matches/edit/:id', component: MatchEditComponent},
+  { path: 'my-matches/edit/:id', component: MatchEditComponent},
   { path: 'my-matches', component: MyMatchesComponent}
 ];
 
