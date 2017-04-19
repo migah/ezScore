@@ -8,6 +8,7 @@
   </md-input-container>
   <button md-button (click)="goalTeam2()">Mål til {{match.team2}}</button>
   <md-card-actions align="end">
-    <button md-button (click)="tryEdit()">EDIT</button>
+    <md-checkbox [(ngModel)]="match.isFinished">Finished</md-checkbox>
+    <button md-button (click)="tryEdit()">Submit</button>
   </md-card-actions>
 </md-card>

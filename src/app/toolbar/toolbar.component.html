@@ -8,6 +8,7 @@
     <button routerLink="/matches/results" md-menu-item>Results</button>
   </md-menu>
   <button *ngIf="isAdmin" routerLink="/users" md-button><i class="fa fa-users fa-lg"></i> Users</button>
+  <button *ngIf="user" routerLink="/my-matches" md-button><i class="fa fa-futbol-o fa-lg"></i> My Matches</button>
 
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>

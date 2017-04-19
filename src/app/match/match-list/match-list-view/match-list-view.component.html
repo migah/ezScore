@@ -8,12 +8,15 @@
   <md-input-container>
     <input mdInput type="datetime-local" placeholder="Start time" [(ngModel)]="time">
   </md-input-container>
+  <md-card-content>
+    {{time}}
+  </md-card-content>
   <md-card-actions>
     <button md-button (click)="addMatch()">Add</button>
   </md-card-actions>
 </md-card>
 <div *ngFor="let match of matches | async">
-  <md-card (click)="goToEdit(match.$key)" *ngIf="cat.match('live') && live(match.startTime)">
+  <md-card (click)="goToEdit(match.$key)" *ngIf="cat.match('live') && live(match.startTime) && !match.isFinished">
     <md-card-content align="center" *ngIf="live(match.startTime)">
       Live!
     </md-card-content>
@@ -31,9 +34,9 @@
       </div>
     </md-card-title>
   </md-card>
-  <md-card (click)="goToEdit(match.$key)" *ngIf="cat.match('upcoming') && !live(match.startTime)">
+  <md-card (click)="goToEdit(match.$key)" *ngIf="cat.match('upcoming') && !live(match.startTime) && !match.isFinished">
     <md-card-content align="center" *ngIf="!live(match.startTime)">
-      Start time: {{ match.startTime  | amDateFormat: 'MMMM d, HH:mm z'}}
+      Start time: {{ match.startTime  | amDateFormat: 'LLL'}}
     </md-card-content>
     <md-card-title>
       <div [fxLayout]="'row'">
@@ -42,6 +45,24 @@
         </div>
         <div fxFlex="100" [fxLayout]="'column'" align="center">
           vs.
+        </div>
+        <div fxFlex="100" [fxLayout]="'column'" align="start">
+          {{match.team2}}
+        </div>
+      </div>
+    </md-card-title>
+  </md-card>
+  <md-card (click)="goToEdit(match.$key)" *ngIf="cat.match('results') && match.isFinished">
+    <md-card-content align="center">
+      Result
+    </md-card-content>
+    <md-card-title>
+      <div [fxLayout]="'row'">
+        <div fxFlex="100" [fxLayout]="'column'" align="end">
+          {{match.team1}}
+        </div>
+        <div fxFlex="100" [fxLayout]="'column'" align="center">
+          {{match.team1Score}} - {{match.team2Score}}
         </div>
         <div fxFlex="100" [fxLayout]="'column'" align="start">
           {{match.team2}}

@@ -25,6 +25,8 @@ import {MatchService} from "./match/match.service";
 import { MatchEditComponent } from './match/match-edit/match-edit.component';
 import { MatchEditViewComponent } from './match/match-edit/match-edit-view/match-edit-view.component';
 import {MomentModule} from "angular2-moment";
+import { MyMatchesComponent } from './match/my-matches/my-matches.component';
+import { MyMatchesViewComponent } from './match/my-matches/my-matches-view/my-matches-view.component';
 
 export const firebaseLoginConfig = {
   provider: AuthProviders.Password,
@@ -45,7 +47,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'users/edit/:id', component: EditUserComponent},
   { path: 'matches/:cat', component: MatchListComponent},
-  { path: 'matches/edit/:id', component: MatchEditComponent}
+  { path: 'matches/edit/:id', component: MatchEditComponent},
+  { path: 'my-matches', component: MyMatchesComponent}
 ];
 
 @NgModule({
@@ -61,7 +64,9 @@ const routes: Routes = [
     MatchListComponent,
     MatchListViewComponent,
     MatchEditComponent,
-    MatchEditViewComponent
+    MatchEditViewComponent,
+    MyMatchesComponent,
+    MyMatchesViewComponent
   ],
   imports: [
     BrowserModule,

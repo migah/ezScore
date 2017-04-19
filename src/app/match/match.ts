@@ -5,4 +5,6 @@ export class Match {
   team1Score: number;
   team2Score: number;
   startTime: Date;
+  isFinished: Boolean;
+  creatorId: string;
 }

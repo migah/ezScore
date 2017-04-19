@@ -2,6 +2,7 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Observable} from "rxjs";
 import {Match} from "../../match";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../login/auth.service";
 
 @Component({
   selector: 'ez-match-list-view',
@@ -23,9 +24,10 @@ export class MatchListViewComponent implements OnInit {
   @Output('addMatch')
   tryCreateMatch = new EventEmitter<Match>();
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
     this.newMatch = new Match();
-    this.now = new Date(Date.now());
+    this.now = new Date();
+    this.now.setHours(this.now.getHours() + 2);
   }
 
   ngOnInit() {
@@ -35,6 +37,8 @@ export class MatchListViewComponent implements OnInit {
     this.newMatch.team1Score = 0;
     this.newMatch.team2Score = 0;
     this.newMatch.startTime = this.time;
+    this.newMatch.isFinished = false;
+    this.newMatch.creatorId = this.authService.currentUserId();
     this.tryCreateMatch.emit(this.newMatch)
   }
 
@@ -44,7 +48,7 @@ export class MatchListViewComponent implements OnInit {
 
   live(date: Date) : boolean {
     var dat1 = Date.parse(date.toString());
-    var dat2 = Date.parse(this.now.toString());
+    var dat2 = Date.parse(this.now.toString())
 
     if (dat1 <= dat2) {
       return true;

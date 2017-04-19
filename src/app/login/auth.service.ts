@@ -19,6 +19,12 @@ export class AuthService {
     return this.af.auth;
   }
 
+  currentUserId(): string {
+    let userId: string;
+    this.af.auth.subscribe(res => userId = res.uid);
+    return userId;
+}
+
   logout(): Observable<void> {
     let promise = <Promise<any>> this.af.auth.logout();
     return Observable.fromPromise(promise);
