@@ -21,10 +21,6 @@ export class MatchListComponent implements OnInit {
   ngOnInit() {
   }
 
-  addMatch(newMatch: Match) {
-    this.matchService.addMatch(newMatch);
-  }
-
   getCategori() {
     this.route.params.subscribe(params => {
       this.cat = params['cat'];

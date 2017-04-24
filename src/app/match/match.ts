@@ -1,3 +1,4 @@
+import {Sport} from "../filter/sport";
 export class Match {
   $key: string;
   team1: string;
@@ -7,4 +8,5 @@ export class Match {
   startTime: Date;
   isFinished: Boolean;
   creatorId: string;
+  sport: Sport;
 }

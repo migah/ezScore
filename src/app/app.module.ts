@@ -27,6 +27,9 @@ import { MatchEditViewComponent } from './match/match-edit/match-edit-view/match
 import {MomentModule} from "angular2-moment";
 import { MyMatchesComponent } from './match/my-matches/my-matches.component';
 import { MyMatchesViewComponent } from './match/my-matches/my-matches-view/my-matches-view.component';
+import {FilterService} from "./filter/filter.service";
+import { NewMatchComponent } from './match/my-matches/new-match/new-match.component';
+import { NewMatchViewComponent } from './match/my-matches/new-match/new-match-view/new-match-view.component';
 
 export const firebaseLoginConfig = {
   provider: AuthProviders.Password,
@@ -48,7 +51,8 @@ const routes: Routes = [
   { path: 'users/edit/:id', component: EditUserComponent},
   { path: 'matches/:cat', component: MatchListComponent},
   { path: 'my-matches/edit/:id', component: MatchEditComponent},
-  { path: 'my-matches', component: MyMatchesComponent}
+  { path: 'my-matches', component: MyMatchesComponent},
+  { path: 'my-matches/new', component: NewMatchComponent}
 ];
 
 @NgModule({
@@ -66,7 +70,9 @@ const routes: Routes = [
     MatchEditComponent,
     MatchEditViewComponent,
     MyMatchesComponent,
-    MyMatchesViewComponent
+    MyMatchesViewComponent,
+    NewMatchComponent,
+    NewMatchViewComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +84,7 @@ const routes: Routes = [
     FlexLayoutModule,
     MomentModule
   ],
-  providers: [UserService, AuthService, RoleService, MatchService],
+  providers: [UserService, AuthService, RoleService, MatchService, FilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

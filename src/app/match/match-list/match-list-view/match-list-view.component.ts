@@ -3,6 +3,8 @@ import {Observable} from "rxjs";
 import {Match} from "../../match";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../login/auth.service";
+import {FilterService} from "../../../filter/filter.service";
+import {Sport} from "../../../filter/sport";
 
 @Component({
   selector: 'ez-match-list-view',
@@ -11,9 +13,9 @@ import {AuthService} from "../../../login/auth.service";
 })
 export class MatchListViewComponent implements OnInit {
 
-  newMatch: Match;
+  sports: Sport[];
   now: Date;
-  time: Date;
+  sport: Sport;
 
   @Input()
   matches: Observable<Match[]>;
@@ -21,25 +23,13 @@ export class MatchListViewComponent implements OnInit {
   @Input()
   cat: string;
 
-  @Output('addMatch')
-  tryCreateMatch = new EventEmitter<Match>();
-
-  constructor(private router: Router, private authService: AuthService) {
-    this.newMatch = new Match();
+  constructor(private router: Router, private filterService: FilterService) {
+    filterService.getSports().subscribe(sports => this.sports = sports);
     this.now = new Date();
     this.now.setHours(this.now.getHours() + 2);
   }
 
   ngOnInit() {
-  }
-
-  addMatch() {
-    this.newMatch.team1Score = 0;
-    this.newMatch.team2Score = 0;
-    this.newMatch.startTime = this.time;
-    this.newMatch.isFinished = false;
-    this.newMatch.creatorId = this.authService.currentUserId();
-    this.tryCreateMatch.emit(this.newMatch)
   }
 
   live(date: Date) : boolean {

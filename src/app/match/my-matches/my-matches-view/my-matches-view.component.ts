@@ -1,7 +1,8 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {Match} from "../../match";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../login/auth.service";
 
 @Component({
   selector: 'ez-my-matches-view',
@@ -16,7 +17,9 @@ export class MyMatchesViewComponent implements OnInit {
   @Input()
   userId: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+
+  }
 
   ngOnInit() {
   }
