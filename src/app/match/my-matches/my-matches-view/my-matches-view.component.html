@@ -1,6 +1,9 @@
 <div *ngFor="let match of matches | async">
   <md-card (click)="goToEdit(match.$key)" *ngIf="match.creatorId == userId">
-    <md-card-content align="center">
+    <md-card-content align="center" *ngIf="match.isFinished">
+      Result
+    </md-card-content>
+    <md-card-content align="center" *ngIf="!match.isFinished">
       Live!
     </md-card-content>
     <md-card-title>
