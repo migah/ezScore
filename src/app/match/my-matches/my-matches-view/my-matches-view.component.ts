@@ -11,6 +11,8 @@ import {AuthService} from "../../../login/auth.service";
 })
 export class MyMatchesViewComponent implements OnInit {
 
+  now: Date;
+
   @Input()
   matches: Observable<Match[]>;
 
@@ -18,7 +20,8 @@ export class MyMatchesViewComponent implements OnInit {
   userId: string;
 
   constructor(private router: Router) {
-
+    this.now = new Date();
+    this.now.setHours(this.now.getHours() + 2);
   }
 
   ngOnInit() {
@@ -26,6 +29,17 @@ export class MyMatchesViewComponent implements OnInit {
 
   goToEdit($key: string) {
     this.router.navigate(['my-matches/edit/' + $key]);
+  }
+
+  live(date: Date) : boolean {
+    var dat1 = Date.parse(date.toString());
+    var dat2 = Date.parse(this.now.toString())
+
+    if (dat1 <= dat2) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

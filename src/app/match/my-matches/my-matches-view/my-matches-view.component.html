@@ -1,10 +1,16 @@
+<md-card>
+  <button md-button routerLink="/my-matches/new">New match</button>
+</md-card>
 <div *ngFor="let match of matches | async">
   <md-card (click)="goToEdit(match.$key)" *ngIf="match.creatorId == userId">
     <md-card-content align="center" *ngIf="match.isFinished">
       Result
     </md-card-content>
-    <md-card-content align="center" *ngIf="!match.isFinished">
+    <md-card-content align="center" *ngIf="!match.isFinished && live(match.startTime)">
       Live!
+    </md-card-content>
+    <md-card-content align="center" *ngIf="!match.isFinished && !live(match.startTime)">
+      Start time: {{ match.startTime  | amDateFormat: 'LLL'}}
     </md-card-content>
     <md-card-title>
       <div [fxLayout]="'row'">

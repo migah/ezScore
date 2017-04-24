@@ -7,12 +7,15 @@
 </md-card>
 <div *ngFor="let match of matches | async">
 
-  <md-card *ngIf="cat.match('live') && live(match.startTime) && !match.isFinished">
+  <md-card *ngIf="cat.match('live') && live(match.startTime) && !match.isFinished && currentSport(match)">
     <md-card-content align="center" *ngIf="live(match.startTime)">
       Live!
     </md-card-content>
     <md-card-title>
       <div [fxLayout]="'row'">
+        <div fxFlex="0" [fxLayout]="'column'" align="start">
+          <img height="50" width="50" src="{{match.sport.img}}" />
+        </div>
         <div fxFlex="100" [fxLayout]="'column'" align="end">
           {{match.team1}}
         </div>
@@ -26,12 +29,15 @@
     </md-card-title>
   </md-card>
 
-  <md-card *ngIf="cat.match('upcoming') && !live(match.startTime) && !match.isFinished">
+  <md-card *ngIf="cat.match('upcoming') && !live(match.startTime) && !match.isFinished && currentSport(match)">
     <md-card-content align="center" *ngIf="!live(match.startTime)">
       Start time: {{ match.startTime  | amDateFormat: 'LLL'}}
     </md-card-content>
     <md-card-title>
       <div [fxLayout]="'row'">
+        <div fxFlex="0" [fxLayout]="'column'" align="start">
+          <img height="50" width="50" src="{{match.sport.img}}" />
+        </div>
         <div fxFlex="100" [fxLayout]="'column'" align="end">
           {{match.team1}}
         </div>
@@ -45,12 +51,15 @@
     </md-card-title>
   </md-card>
 
-  <md-card *ngIf="cat.match('results') && match.isFinished">
+  <md-card *ngIf="cat.match('results') && match.isFinished && currentSport(match)">
     <md-card-content align="center">
       Result
     </md-card-content>
     <md-card-title>
       <div [fxLayout]="'row'">
+        <div fxFlex="0" [fxLayout]="'column'" align="start">
+          <img height="50" width="50" src="{{match.sport.img}}" />
+        </div>
         <div fxFlex="100" [fxLayout]="'column'" align="end">
           {{match.team1}}
         </div>

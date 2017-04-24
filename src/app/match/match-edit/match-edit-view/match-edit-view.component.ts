@@ -14,6 +14,9 @@ export class MatchEditViewComponent implements OnInit {
   @Output('editMatch')
   tryEditEmitter = new EventEmitter<Match>();
 
+  @Output('deleteMatch')
+  tryDeleteEmitter = new EventEmitter<Match>();
+
   constructor() { }
 
   ngOnInit() {
@@ -21,6 +24,10 @@ export class MatchEditViewComponent implements OnInit {
 
   tryEdit() {
     this.tryEditEmitter.emit(this.match);
+  }
+
+  tryDelete() {
+    this.tryDeleteEmitter.emit(this.match);
   }
 
   goalTeam1() {

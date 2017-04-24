@@ -33,4 +33,9 @@ export class MatchEditComponent implements OnInit {
     this.router.navigate(['my-matches']);
   }
 
+  deleteMatch(matchToDelete: Match) {
+    this.matchService.deleteMatch(matchToDelete.$key);
+    this.router.navigate(['my-matches']);
+  }
+
 }

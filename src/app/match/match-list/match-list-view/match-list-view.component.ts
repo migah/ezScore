@@ -42,4 +42,12 @@ export class MatchListViewComponent implements OnInit {
       return false;
     }
   }
+
+  currentSport(match: Match) : boolean {
+    if (this.sport) {
+      return match.sport.name == this.sport.name;
+    } else {
+      return true;
+    }
+  }
 }
