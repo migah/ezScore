@@ -1,20 +1,16 @@
 <md-card>
-  <md-card-title>
-    <md-input-container *ngIf="user">
-      <input  mdInput type="text" [(ngModel)]="user.profile.username" placeholder="Username">
-    </md-input-container>
-  </md-card-title>
   <md-card-content>
- <i class="fa fa-envelope-o"></i>
-  <md-input-container *ngIf="user">
-    <input  mdInput type="text" [(ngModel)]="user.profile.email">
-  </md-input-container>
-</md-card-content>
-  <md-card-content>
-    <i class="fa fa-phone"></i>
+    <i class="fa fa-envelope-o"></i>
     <md-input-container *ngIf="user">
-      <input  mdInput type="text" [(ngModel)]="user.profile.phone">
+      <input  mdInput type="text" [(ngModel)]="user.profile.email">
     </md-input-container>
+    <br>
+    <i class="fa fa-user"></i>
+      <md-select placeholder="Role" [(ngModel)]="user.role" *ngIf="user">
+        <md-option *ngFor="let role of roles | async" [value]="role">
+          {{role.name}}
+        </md-option>
+      </md-select>
   </md-card-content>
   <md-card-actions>
     <button md-button (click)="tryEdit()">Save</button>

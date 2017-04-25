@@ -1,4 +1,5 @@
 import {Sport} from "../filter/sport";
+import {Round} from "./round";
 export class Match {
   $key: string;
   team1: string;
@@ -9,4 +10,5 @@ export class Match {
   isFinished: Boolean;
   creatorId: string;
   sport: Sport;
+  rounds: Round[];
 }

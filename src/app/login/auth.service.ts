@@ -15,6 +15,21 @@ export class AuthService {
     return Observable.fromPromise(promise);
   }
 
+  register(email, password) : Observable<FirebaseAuthState> {
+    let promise = <Promise<FirebaseAuthState>> this.af.auth.createUser({email, password})
+      .then(res => {
+        this.af.database.object('users/' + res.uid).set({
+          profile: {
+            email: email
+          },
+          role:{
+            name: "user"
+          }
+        });
+      });
+    return Observable.fromPromise(promise);
+  }
+
   currentUser(): Observable<FirebaseAuthState> {
     return this.af.auth;
   }

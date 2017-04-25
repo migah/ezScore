@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "./auth.service";
 import {AuthUser} from "./auth-user";
+import {MdSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   loginError: string
   tryingToLogIn: boolean
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private snackBar: MdSnackBar) { }
 
   ngOnInit() {
   }
@@ -26,11 +27,32 @@ export class LoginComponent implements OnInit {
           this.router.navigate([""]);
         },
         (err) => {
-          this.loginError = "Username or password is incorrect"
+          this.snackBar.open("Username or password is incorrect", "OK", {
+            duration: 3000,
+          });
           this.tryingToLogIn = false;
         },
         () => {
           this.tryingToLogIn = false;
+        }
+      )
+  }
+
+  register (aUser: AuthUser) {
+    this.authService.register(aUser.email, aUser.password)
+      .subscribe(
+        (user) => {
+          this.snackBar.open(aUser.email + " created. Please login", "OK", {
+            duration: 3000,
+          });
+        },
+        (err) => {
+          this.snackBar.open("Error", "OK", {
+            duration: 3000,
+          });
+        },
+        () => {
+
         }
       )
   }

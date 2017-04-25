@@ -1,5 +1,8 @@
 <md-card>
   <md-select placeholder="Sport" [(ngModel)]="sport" name="role">
+    <md-option value="{{null}}">
+      All
+    </md-option>
     <md-option *ngFor="let sport of sports" [value]="sport">
       {{sport.name}}
     </md-option>
@@ -27,6 +30,11 @@
         </div>
       </div>
     </md-card-title>
+    <md-card-content align="center">
+      <div *ngFor="let round of match.rounds">
+        ({{round.team1score}} - {{round.team2score}})
+      </div>
+    </md-card-content>
   </md-card>
 
   <md-card *ngIf="cat.match('upcoming') && !live(match.startTime) && !match.isFinished && currentSport(match)">
@@ -71,6 +79,11 @@
         </div>
       </div>
     </md-card-title>
+    <md-card-content align="center">
+      <div *ngFor="let round of match.rounds">
+        ({{round.team1score}} - {{round.team2score}})
+      </div>
+    </md-card-content>
   </md-card>
 
 </div>

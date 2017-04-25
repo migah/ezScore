@@ -17,6 +17,12 @@ export class MatchEditViewComponent implements OnInit {
   @Output('deleteMatch')
   tryDeleteEmitter = new EventEmitter<Match>();
 
+  @Output('updateMatch')
+  tryUpdateEmitter = new EventEmitter<Match>();
+
+  @Output('addRound')
+  tryAddRoundEmitter = new EventEmitter<Match>();
+
   constructor() { }
 
   ngOnInit() {
@@ -30,12 +36,12 @@ export class MatchEditViewComponent implements OnInit {
     this.tryDeleteEmitter.emit(this.match);
   }
 
-  goalTeam1() {
-    this.match.team1Score++;
+  tryUpdate() {
+    this.tryUpdateEmitter.emit(this.match);
   }
 
-  goalTeam2() {
-    this.match.team2Score++;
+  tryAddRound() {
+    this.tryAddRoundEmitter.emit(this.match);
   }
 
 }

@@ -27,14 +27,8 @@
 </md-card>
 <md-card *ngFor="let user of users | async">
   <md-card-title>
-    {{user.profile.username}}
+    {{user.profile.email}}
   </md-card-title>
-  <md-card-content>
-    <i class="fa fa-envelope-o"></i> {{user.profile.email}}
-  </md-card-content>
-  <md-card-content>
-    <i class="fa fa-phone"></i> {{user.profile.phone}}
-  </md-card-content>
   <md-card-content>
     <i class="fa fa-user"></i> {{user.role.name}}
   </md-card-content>

@@ -18,6 +18,9 @@ export class LoginViewComponent implements OnInit {
   @Output('login')
   tryLoginEmitter = new EventEmitter<AuthUser>();
 
+  @Output('register')
+  tryRegisterEmitter = new EventEmitter<AuthUser>();
+
   constructor() { }
 
   ngOnInit() {
@@ -26,5 +29,9 @@ export class LoginViewComponent implements OnInit {
 
   tryLogin() {
     this.tryLoginEmitter.emit(this.user);
+  }
+
+  tryRegister() {
+    this.tryRegisterEmitter.emit(this.user);
   }
 }

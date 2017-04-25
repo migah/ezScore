@@ -8,7 +8,7 @@
   <md-input-container>
     <input mdInput type="datetime-local" placeholder="Start time" [(ngModel)]="time">
   </md-input-container>
-  <md-select placeholder="Sport" [(ngModel)]="sport" name="role">
+  <md-select placeholder="Sport" [(ngModel)]="sport">
     <md-option *ngFor="let sport of sports" [value]="sport">
       {{sport.name}}
     </md-option>

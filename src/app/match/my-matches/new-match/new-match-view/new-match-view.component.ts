@@ -3,6 +3,7 @@ import {Match} from "../../../match";
 import {AuthService} from "../../../../login/auth.service";
 import {Sport} from "../../../../filter/sport";
 import {FilterService} from "../../../../filter/filter.service";
+import {Round} from "../../../round";
 
 @Component({
   selector: 'ez-new-match-view',
@@ -34,6 +35,8 @@ export class NewMatchViewComponent implements OnInit {
     this.newMatch.isFinished = false;
     this.newMatch.creatorId = this.authService.currentUserId();
     this.newMatch.sport = this.sport;
+    this.newMatch.rounds = new Array<Round>();
+    this.newMatch.rounds.push({team1score: 0, team2score: 0, roundNo: 1});
     this.tryCreateMatch.emit(this.newMatch)
   }
 }

@@ -1,15 +1,27 @@
 <md-card align="center" *ngIf="match">
-  <button md-button (click)="goalTeam1()">Mål til {{match.team1}}</button>
+  Overall score
+  <br>
   <md-input-container >
     <input mdInput type="number" placeholder="{{match.team1}}" [(ngModel)]="match.team1Score">
   </md-input-container>
   <md-input-container>
     <input mdInput type="number" placeholder="{{match.team2}}" [(ngModel)]="match.team2Score">
   </md-input-container>
-  <button md-button (click)="goalTeam2()">Mål til {{match.team2}}</button>
+  <div *ngFor="let round of match.rounds">
+    Round {{round.roundNo}}
+    <br>
+    <md-input-container>
+      <input mdInput type="number" placeholder="{{match.team1}}" [(ngModel)]="round.team1score">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput type="number" placeholder="{{match.team2}}" [(ngModel)]="round.team2score">
+    </md-input-container>
+  </div>
+  <button md-button (click)="tryAddRound()">Add round</button>
   <md-card-actions align="end">
     <md-checkbox [(ngModel)]="match.isFinished">Finished</md-checkbox>
-    <button md-button (click)="tryEdit()">Submit</button>
+    <button md-button (click)="tryUpdate()">Update</button>
+    <button md-button (click)="tryEdit()">Done</button>
     <button md-button (click)="tryDelete()">Delete</button>
   </md-card-actions>
 </md-card>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Match} from "../match";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatchService} from "../match.service";
+import {MdSnackBar} from "@angular/material";
 
 @Component({
   selector: 'ez-match-edit',
@@ -11,7 +12,7 @@ export class MatchEditComponent implements OnInit {
 
   match: Match;
 
-  constructor(private route: ActivatedRoute, private matchService: MatchService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private matchService: MatchService, private router: Router, private snackBar: MdSnackBar) { }
 
   ngOnInit() {
     this.getMatchToEdit();
@@ -33,9 +34,20 @@ export class MatchEditComponent implements OnInit {
     this.router.navigate(['my-matches']);
   }
 
+  updateMatch(matchToEdit: Match) {
+    this.matchService.editMatch(matchToEdit);
+    this.snackBar.open("Match updated", "OK", {
+      duration: 2000,
+    });
+  }
+
   deleteMatch(matchToDelete: Match) {
     this.matchService.deleteMatch(matchToDelete.$key);
     this.router.navigate(['my-matches']);
   }
 
+  addRound(match: Match) {
+    match.rounds.push({roundNo: match.rounds.length + 1, team1score: 0, team2score: 0})
+    this.updateMatch(match);
+  }
 }

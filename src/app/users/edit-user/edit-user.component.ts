@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {User} from "../user";
+import {RoleService} from "../../role/role.service";
+import {Role} from "../../role/role";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'ez-edit-user',
@@ -10,8 +13,10 @@ import {User} from "../user";
 export class EditUserComponent implements OnInit {
 
   user : User;
-  constructor(private  route : ActivatedRoute, private userService : UserService, private router: Router) {
+  roles: Observable<Role[]>;
 
+  constructor(private route : ActivatedRoute, private userService : UserService, private router: Router, private roleService: RoleService) {
+    this.roles = this.roleService.getRoles();
   }
 
   ngOnInit() {
