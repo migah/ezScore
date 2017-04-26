@@ -50,4 +50,12 @@ export class MatchEditComponent implements OnInit {
     match.rounds.push({roundNo: match.rounds.length + 1, team1score: 0, team2score: 0})
     this.updateMatch(match);
   }
+
+  removeRound(match: Match) {
+    if (match.rounds.length == 1) {
+      return;
+    }
+    match.rounds.pop();
+    this.updateMatch(match);
+  }
 }

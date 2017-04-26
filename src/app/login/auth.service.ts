@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {AngularFire, FirebaseAuthState} from "angularfire2";
 import {Observable} from "rxjs";
+import {UserService} from "../users/user.service";
 
 @Injectable()
 export class AuthService {
 
-  constructor(private af: AngularFire) { }
+  constructor(private af: AngularFire, private userService: UserService) { }
 
   login(email, password) : Observable<FirebaseAuthState> {
     let promise = <Promise<FirebaseAuthState>> this.af.auth.login({
@@ -34,14 +35,22 @@ export class AuthService {
     return this.af.auth;
   }
 
+  isUserLoggedIn() : Observable<boolean> {
+    return this.af.auth.switchMap(res => Observable.of(!!res));
+  }
+
   currentUserId(): string {
     let userId: string;
     this.af.auth.subscribe(res => userId = res.uid);
     return userId;
-}
+  }
 
   logout(): Observable<void> {
     let promise = <Promise<any>> this.af.auth.logout();
     return Observable.fromPromise(promise);
+  }
+
+  isCurrentUserAdmin() : Observable<boolean> {
+    return this.userService.getUser(this.currentUserId()).switchMap(res => Observable.of(res.role.name == 'admin'));
   }
 }

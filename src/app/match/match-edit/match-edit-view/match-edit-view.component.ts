@@ -23,6 +23,9 @@ export class MatchEditViewComponent implements OnInit {
   @Output('addRound')
   tryAddRoundEmitter = new EventEmitter<Match>();
 
+  @Output('removeRound')
+  tryRemoveRoundEmitter = new EventEmitter<Match>();
+
   constructor() { }
 
   ngOnInit() {
@@ -42,6 +45,10 @@ export class MatchEditViewComponent implements OnInit {
 
   tryAddRound() {
     this.tryAddRoundEmitter.emit(this.match);
+  }
+
+  tryRemoveRound() {
+    this.tryRemoveRoundEmitter.emit(this.match);
   }
 
 }

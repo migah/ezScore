@@ -25,7 +25,7 @@ export class ToolbarComponent implements OnInit {
     this.authService.currentUser().subscribe(user => {
       this.user = user;
       if (user) {
-        this.roleService.isAdmin(user.uid).subscribe(value => {
+        this.authService.isCurrentUserAdmin().subscribe(value => {
           this.isAdmin = value;
         });
       }

@@ -1,3 +1,15 @@
+<md-card *ngIf="match">
+  <md-input-container>
+    <input mdInput type="text" placeholder="Team 1" [(ngModel)]="match.team1">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="text" placeholder="Team 2" [(ngModel)]="match.team2">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput type="datetime-local" placeholder="Team 2" [(ngModel)]="match.startTime">
+  </md-input-container>
+  <md-checkbox [(ngModel)]="match.isFinished">Match is finished</md-checkbox>
+</md-card>
 <md-card align="center" *ngIf="match">
   Overall score
   <br>
@@ -18,8 +30,8 @@
     </md-input-container>
   </div>
   <button md-button (click)="tryAddRound()">Add round</button>
+  <button md-button (click)="tryRemoveRound()" *ngIf="match.rounds.length > 1">Remove round</button>
   <md-card-actions align="end">
-    <md-checkbox [(ngModel)]="match.isFinished">Finished</md-checkbox>
     <button md-button (click)="tryUpdate()">Update</button>
     <button md-button (click)="tryEdit()">Done</button>
     <button md-button (click)="tryDelete()">Delete</button>

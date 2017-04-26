@@ -6,6 +6,9 @@ import {Role} from "../role/role";
 import {RoleService} from "../role/role.service";
 import {Router} from "@angular/router";
 import {Profile} from "./profile";
+import * as firebase from "firebase/app";
+import Auth = firebase.auth.Auth;
+import {AuthService} from "../login/auth.service";
 
 @Component({
   selector: 'ez-users',
@@ -20,8 +23,9 @@ export class UsersComponent implements OnInit {
   userNew: User;
   initialProfile: Profile;
   password: string;
+  isAdmin: boolean;
 
-  constructor(private userService : UserService, private roleService: RoleService, private router: Router) {
+  constructor(private authService: AuthService, private userService : UserService, private roleService: RoleService, private router: Router) {
     this.users = userService.getUsers();
     roleService.getRoles().subscribe(roles => this.roles = roles);
     this.newUser = false;
@@ -30,6 +34,12 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.isCurrentUserAdmin().subscribe((res) => {
+      this.isAdmin = res;
+    });
+    if (!this.isAdmin) {
+      this.router.navigate(['']);
+    }
   }
 
   editUser(user: User) {
