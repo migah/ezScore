@@ -7,10 +7,14 @@
       {{sport.name}}
     </md-option>
   </md-select>
+  <md-input-container>
+    <input mdInput type="text" placeholder="Search for team" [(ngModel)]="searchTerm">
+  </md-input-container>
 </md-card>
+
 <div *ngFor="let match of matches | async">
 
-  <md-card *ngIf="cat.match('live') && live(match.startTime) && !match.isFinished && currentSport(match)">
+  <md-card *ngIf="cat.match('live') && live(match.startTime) && !match.isFinished && currentSport(match) && search(match)">
     <md-card-content align="center" *ngIf="live(match.startTime)">
       Live!
     </md-card-content>
@@ -37,7 +41,7 @@
     </md-card-content>
   </md-card>
 
-  <md-card *ngIf="cat.match('upcoming') && !live(match.startTime) && !match.isFinished && currentSport(match)">
+  <md-card *ngIf="cat.match('upcoming') && !live(match.startTime) && !match.isFinished && currentSport(match) && search(match)">
     <md-card-content align="center" *ngIf="!live(match.startTime)">
       Start time: {{ match.startTime  | amDateFormat: 'LLL'}}
     </md-card-content>
@@ -59,7 +63,7 @@
     </md-card-title>
   </md-card>
 
-  <md-card *ngIf="cat.match('results') && match.isFinished && currentSport(match)">
+  <md-card *ngIf="cat.match('results') && match.isFinished && currentSport(match) && search(match)">
     <md-card-content align="center">
       Result
     </md-card-content>

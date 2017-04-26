@@ -16,6 +16,7 @@ export class MatchListViewComponent implements OnInit {
   sports: Sport[];
   now: Date;
   sport: Sport;
+  searchTerm: string;
 
   @Input()
   matches: Observable<Match[]>;
@@ -49,5 +50,15 @@ export class MatchListViewComponent implements OnInit {
     } else {
       return true;
     }
+  }
+
+  search(match: Match) : boolean {
+    if (!this.searchTerm || this.searchTerm == "") {
+      return true;
+    }
+    if (match.team1.toLowerCase().includes(this.searchTerm.toLowerCase()) || match.team2.toLowerCase().includes(this.searchTerm.toLowerCase())) {
+      return true;
+    }
+    return false;
   }
 }
