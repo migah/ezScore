@@ -6,10 +6,10 @@
     <md-card-content align="center" *ngIf="match.isFinished">
       Result
     </md-card-content>
-    <md-card-content align="center" *ngIf="!match.isFinished && live(match.startTime)">
+    <md-card-content align="center" *ngIf="!match.isFinished && live(match)">
       Live!
     </md-card-content>
-    <md-card-content align="center" *ngIf="!match.isFinished && !live(match.startTime)">
+    <md-card-content align="center" *ngIf="!match.isFinished && !live(match)">
       Start time: {{ match.startTime  | amDateFormat: 'LLL'}}
     </md-card-content>
     <md-card-title>

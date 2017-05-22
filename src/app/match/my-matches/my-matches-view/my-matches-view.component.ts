@@ -3,6 +3,7 @@ import {Match} from "../../match";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../login/auth.service";
+import {MatchService} from "../../match.service";
 
 @Component({
   selector: 'ez-my-matches-view',
@@ -19,7 +20,7 @@ export class MyMatchesViewComponent implements OnInit {
   @Input()
   userId: string;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private matchService: MatchService) {
     this.now = new Date();
     this.now.setHours(this.now.getHours() + 2);
   }
@@ -31,15 +32,8 @@ export class MyMatchesViewComponent implements OnInit {
     this.router.navigate(['my-matches/edit/' + $key]);
   }
 
-  live(date: Date) : boolean {
-    var dat1 = Date.parse(date.toString());
-    var dat2 = Date.parse(this.now.toString())
-
-    if (dat1 <= dat2) {
-      return true;
-    } else {
-      return false;
-    }
+  live(match: Match) : boolean {
+    return this.matchService.isMatchLive(match);
   }
 
 }

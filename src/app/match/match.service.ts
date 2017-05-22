@@ -31,4 +31,29 @@ export class MatchService {
     }
   }
 
+  isMatchLive(match: Match) : boolean {
+    if (match.isFinished)
+      return false;
+
+    let now = new Date();
+    now.setHours(now.getHours() + 2);
+
+    let dat1 = Date.parse(match.startTime.toString());
+    let dat2 = Date.parse(now.toString());
+
+    return (dat1 <= dat2)
+  }
+
+  getLiveMatches(amount: number) : Observable<Match[]> {
+    return this.getMatches().switchMap(matches => {
+      const firstThree = [];
+      matches.forEach(match => {
+        if (this.isMatchLive(match) && firstThree.length < amount) {
+          firstThree.push(match);
+        }
+      });
+      return Observable.of(firstThree);
+    });
+  }
+
 }

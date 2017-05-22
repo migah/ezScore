@@ -29,14 +29,8 @@ export class NewMatchViewComponent implements OnInit {
   }
 
   addMatch() {
-    this.newMatch.team1Score = 0;
-    this.newMatch.team2Score = 0;
     this.newMatch.startTime = this.time;
-    this.newMatch.isFinished = false;
-    this.newMatch.creatorId = this.authService.currentUserId();
     this.newMatch.sport = this.sport;
-    this.newMatch.rounds = new Array<Round>();
-    this.newMatch.rounds.push({team1score: 0, team2score: 0, roundNo: 1});
     this.tryCreateMatch.emit(this.newMatch)
   }
 }

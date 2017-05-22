@@ -14,8 +14,8 @@
 
 <div *ngFor="let match of matches | async">
 
-  <md-card *ngIf="cat.match('live') && live(match.startTime) && !match.isFinished && currentSport(match) && search(match)">
-    <md-card-content align="center" *ngIf="live(match.startTime)">
+  <md-card *ngIf="cat.match('live') && live(match) && !match.isFinished && currentSport(match) && search(match)">
+    <md-card-content align="center">
       Live!
     </md-card-content>
     <md-card-title>
@@ -41,8 +41,8 @@
     </md-card-content>
   </md-card>
 
-  <md-card *ngIf="cat.match('upcoming') && !live(match.startTime) && !match.isFinished && currentSport(match) && search(match)">
-    <md-card-content align="center" *ngIf="!live(match.startTime)">
+  <md-card *ngIf="cat.match('upcoming') && !live(match) && !match.isFinished && currentSport(match) && search(match)">
+    <md-card-content align="center">
       Start time: {{ match.startTime  | amDateFormat: 'LLL'}}
     </md-card-content>
     <md-card-title>
