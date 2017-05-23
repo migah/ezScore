@@ -11,18 +11,14 @@ import {Round} from "../../round";
 })
 export class NewMatchComponent implements OnInit {
 
-  isLoggedIn: boolean;
-
   constructor(private matchService: MatchService, private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
     this.authService.isUserLoggedIn().subscribe((res) => {
-      this.isLoggedIn = res;
+      if (!res)
+        this.router.navigate(['login']);
     });
-    if (!this.isLoggedIn) {
-      this.router.navigate(['login']);
-    }
   }
 
   addMatch(newMatch: Match) {
