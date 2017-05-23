@@ -13,7 +13,6 @@ export class MyMatchesComponent implements OnInit {
 
   matches: Observable<Match[]>;
   userId: string;
-  isLoggedIn: boolean;
 
   constructor(private matchService: MatchService, private authService: AuthService, private router: Router) {
     this.matches = matchService.getMatches();
@@ -22,10 +21,9 @@ export class MyMatchesComponent implements OnInit {
 
   ngOnInit() {
     this.authService.isUserLoggedIn().subscribe((res) => {
-      this.isLoggedIn = res;
+      if (!res) {
+        this.router.navigate(['login']);
+      }
     });
-    if (!this.isLoggedIn) {
-      this.router.navigate(['login']);
-    }
   }
 }
