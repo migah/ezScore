@@ -3,8 +3,7 @@ import {AuthUser} from "../auth-user";
 
 @Component({
   selector: 'ez-login-view',
-  templateUrl: './login-view.component.html',
-  styleUrls: ['./login-view.component.css']
+  templateUrl: './login-view.component.html'
 })
 export class LoginViewComponent implements OnInit {
   user: AuthUser;

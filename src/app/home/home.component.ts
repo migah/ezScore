@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   matches: Observable<Match[]>;
 
   constructor(private matchService: MatchService) {
-    this.matches = matchService.getMatches();
+    this.matches = matchService.getLiveMatches(3);
   }
 
   ngOnInit() {

@@ -10,7 +10,7 @@
       Live!
     </md-card-content>
     <md-card-content align="center" *ngIf="!match.isFinished && !live(match)">
-      Start time: {{ match.startTime  | amDateFormat: 'LLL'}}
+      {{ match.startTime  | amDateFormat: 'dddd, DD/MM HH:mm'}}
     </md-card-content>
     <md-card-title>
       <div [fxLayout]="'row'">

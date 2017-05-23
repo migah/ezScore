@@ -35,12 +35,13 @@ export class MatchService {
     if (match.isFinished)
       return false;
 
+    //new Date() returns the time right now
     let now = new Date();
-    now.setHours(now.getHours() + 2);
 
     let dat1 = Date.parse(match.startTime.toString());
     let dat2 = Date.parse(now.toString());
 
+    //Returns true if start time is less (before) the current time, meaning the game has started
     return (dat1 <= dat2)
   }
 

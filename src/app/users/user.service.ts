@@ -13,6 +13,7 @@ export class UserService {
   constructor(private af: AngularFire) { }
 
   addUser(user: User, password: string) {
+    //This hack prevents a login, when a user is created.
     if (!this.app) {
       this.app = firebase.initializeApp(firebaseConfig, "secondary");
     }

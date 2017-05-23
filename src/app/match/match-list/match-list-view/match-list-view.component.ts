@@ -14,7 +14,6 @@ import {MatchService} from "../../match.service";
 export class MatchListViewComponent implements OnInit {
 
   sports: Sport[];
-  now: Date;
   sport: Sport;
   searchTerm: string;
 
@@ -24,10 +23,8 @@ export class MatchListViewComponent implements OnInit {
   @Input()
   cat: string;
 
-  constructor(private router: Router, private filterService: FilterService, private matchService: MatchService) {
+  constructor(private router: Router, private filterService: FilterService, private matchService: MatchService, private authService: AuthService) {
     filterService.getSports().subscribe(sports => this.sports = sports);
-    this.now = new Date();
-    this.now.setHours(this.now.getHours() + 2);
   }
 
   ngOnInit() {
@@ -50,5 +47,15 @@ export class MatchListViewComponent implements OnInit {
       return true;
     }
     return match.team1.toLowerCase().includes(this.searchTerm.toLowerCase()) || match.team2.toLowerCase().includes(this.searchTerm.toLowerCase());
+  }
+
+  goToEdit($key: string) {
+    if (!this.authService.isUserLoggedIn())
+      return;
+    this.authService.isCurrentUserAdmin().subscribe(res => {
+      if (res) {
+        this.router.navigate(['my-matches/edit/' + $key]);
+      }
+    });
   }
 }

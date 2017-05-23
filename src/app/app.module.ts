@@ -30,6 +30,7 @@ import { MyMatchesViewComponent } from './match/my-matches/my-matches-view/my-ma
 import {FilterService} from "./filter/filter.service";
 import { NewMatchComponent } from './match/my-matches/new-match/new-match.component';
 import { NewMatchViewComponent } from './match/my-matches/new-match/new-match-view/new-match-view.component';
+import { HomeViewComponent } from './home/home-view/home-view.component';
 
 export const firebaseLoginConfig = {
   provider: AuthProviders.Password,
@@ -72,7 +73,8 @@ const routes: Routes = [
     MyMatchesComponent,
     MyMatchesViewComponent,
     NewMatchComponent,
-    NewMatchViewComponent
+    NewMatchViewComponent,
+    HomeViewComponent
   ],
   imports: [
     BrowserModule,

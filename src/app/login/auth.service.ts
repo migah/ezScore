@@ -40,9 +40,13 @@ export class AuthService {
   }
 
   currentUserId(): string {
-    let userId: string;
-    this.af.auth.subscribe(res => userId = res.uid);
-    return userId;
+    let id;
+    this.currentUser().subscribe(res => {
+      if (res) {
+        id = res.uid;
+      }
+    });
+    return id;
   }
 
   logout(): Observable<void> {
@@ -51,6 +55,6 @@ export class AuthService {
   }
 
   isCurrentUserAdmin() : Observable<boolean> {
-    return this.userService.getUser(this.currentUserId()).switchMap(res => Observable.of(res.role.name == 'admin'));
+    return this.userService.getUser(this.currentUserId()).switchMap((user) => Observable.of(user.role.name == 'admin'))
   }
 }

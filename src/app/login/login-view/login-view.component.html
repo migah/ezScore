@@ -3,7 +3,7 @@
     <md-card style="margin: 0;width: 200px;">
       <div *ngIf="!tryingToLogIn">
         <i class="fa fa-lock"></i>
-        Login
+        Login/Register
         <p *ngIf="signInError && signInError.length > 0" class="error-message">
           <i class="fa fa-exclamation-circle"></i>
           {{signInError}}
@@ -23,16 +23,13 @@
                      type="password"
                      [(ngModel)]="user.password">
             </md-input-container>
-
           </md-card-content>
           <md-card-actions class="example-button-row" fxLayoutAlign="center center">
-            <!--<button type="button" class="login-button" md-button routerLink="/lostPassword">Lost password</button>-->
-
             <button type="submit" md-raised-button color="primary" >Sign in</button>
           </md-card-actions>
         </form>
         <div align="center">
-          <button (click)="tryRegister()" md-button>Register</button>
+          <button (click)="tryRegister()" md-raised-button color="primary">Register</button>
         </div>
       </div>
       <div *ngIf="tryingToLogIn" fxFlexFill [fxLayout]="'column'" fxLayoutAlign="center center">

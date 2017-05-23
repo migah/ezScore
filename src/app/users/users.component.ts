@@ -12,8 +12,7 @@ import {AuthService} from "../login/auth.service";
 
 @Component({
   selector: 'ez-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  templateUrl: './users.component.html'
 })
 export class UsersComponent implements OnInit {
 

@@ -5,8 +5,7 @@ import {Role} from "../../../role/role";
 
 @Component({
   selector: 'ez-edit-user-view',
-  templateUrl: 'edit-user-view.component.html',
-  styleUrls: ['edit-user-view.component.css']
+  templateUrl: 'edit-user-view.component.html'
 })
 export class EditUserViewComponent implements OnInit {
 
@@ -28,6 +27,4 @@ export class EditUserViewComponent implements OnInit {
   tryEdit(){
     this.tryEditEmitter.emit(this.user);
   }
-
-
 }

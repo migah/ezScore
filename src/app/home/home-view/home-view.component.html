@@ -1,7 +1,7 @@
 <h1 align="center">Welcome to ezScore</h1>
 <p align="center">Live matches</p>
 <div *ngFor="let match of matches | async">
-  <md-card *ngIf="i<3 && live(match)">
+  <md-card>
     <md-card-title>
       <div [fxLayout]="'row'">
         <div fxFlex="100" [fxLayout]="'column'" align="end">

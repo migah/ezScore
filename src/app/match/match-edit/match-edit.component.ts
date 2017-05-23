@@ -3,6 +3,7 @@ import {Match} from "../match";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatchService} from "../match.service";
 import {MdSnackBar} from "@angular/material";
+import {AuthService} from "../../login/auth.service";
 
 @Component({
   selector: 'ez-match-edit',
@@ -11,11 +12,18 @@ import {MdSnackBar} from "@angular/material";
 export class MatchEditComponent implements OnInit {
 
   match: Match;
+  isAdmin: boolean;
 
-  constructor(private route: ActivatedRoute, private matchService: MatchService, private router: Router, private snackBar: MdSnackBar) { }
+  constructor(private route: ActivatedRoute, private matchService: MatchService, private router: Router, private snackBar: MdSnackBar, private authService: AuthService) { }
 
   ngOnInit() {
     this.getMatchToEdit();
+    this.authService.isCurrentUserAdmin().subscribe((res) => {
+      if (!res && !this.authService.isUserLoggedIn() && this.authService.currentUserId() != this.match.creatorId) {
+        this.router.navigate(['']);
+      }
+    });
+
   }
 
   getMatchToEdit() {

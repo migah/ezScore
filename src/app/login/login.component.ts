@@ -6,13 +6,12 @@ import {MdSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
 
-  loginError: string
-  tryingToLogIn: boolean
+  loginError: string;
+  tryingToLogIn: boolean;
   constructor(private authService: AuthService, private router: Router, private snackBar: MdSnackBar) { }
 
   ngOnInit() {
@@ -42,12 +41,13 @@ export class LoginComponent implements OnInit {
     this.authService.register(aUser.email, aUser.password)
       .subscribe(
         (user) => {
-          this.snackBar.open(aUser.email + " created. Please login", "OK", {
+          this.snackBar.open(aUser.email + " created.", "OK", {
             duration: 3000,
           });
+          this.router.navigate([""]);
         },
         (err) => {
-          this.snackBar.open("Error", "OK", {
+          this.snackBar.open(err, "OK", {
             duration: 3000,
           });
         },
