@@ -3,8 +3,7 @@ import {Match} from "../../match";
 
 @Component({
   selector: 'ez-match-edit-view',
-  templateUrl: './match-edit-view.component.html',
-  styleUrls: ['./match-edit-view.component.css']
+  templateUrl: './match-edit-view.component.html'
 })
 export class MatchEditViewComponent implements OnInit {
 

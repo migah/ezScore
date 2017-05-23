@@ -9,8 +9,7 @@ import {MatchService} from "../../match.service";
 
 @Component({
   selector: 'ez-match-list-view',
-  templateUrl: './match-list-view.component.html',
-  styleUrls: ['./match-list-view.component.css']
+  templateUrl: './match-list-view.component.html'
 })
 export class MatchListViewComponent implements OnInit {
 
@@ -50,9 +49,6 @@ export class MatchListViewComponent implements OnInit {
     if (!this.searchTerm || this.searchTerm == "") {
       return true;
     }
-    if (match.team1.toLowerCase().includes(this.searchTerm.toLowerCase()) || match.team2.toLowerCase().includes(this.searchTerm.toLowerCase())) {
-      return true;
-    }
-    return false;
+    return match.team1.toLowerCase().includes(this.searchTerm.toLowerCase()) || match.team2.toLowerCase().includes(this.searchTerm.toLowerCase());
   }
 }

@@ -7,8 +7,7 @@ import {Round} from "../../../round";
 
 @Component({
   selector: 'ez-new-match-view',
-  templateUrl: './new-match-view.component.html',
-  styleUrls: ['./new-match-view.component.css']
+  templateUrl: './new-match-view.component.html'
 })
 export class NewMatchViewComponent implements OnInit {
 

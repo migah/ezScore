@@ -7,12 +7,9 @@ import {MatchService} from "../../match.service";
 
 @Component({
   selector: 'ez-my-matches-view',
-  templateUrl: './my-matches-view.component.html',
-  styleUrls: ['./my-matches-view.component.css']
+  templateUrl: './my-matches-view.component.html'
 })
 export class MyMatchesViewComponent implements OnInit {
-
-  now: Date;
 
   @Input()
   matches: Observable<Match[]>;
@@ -21,8 +18,6 @@ export class MyMatchesViewComponent implements OnInit {
   userId: string;
 
   constructor(private router: Router, private matchService: MatchService) {
-    this.now = new Date();
-    this.now.setHours(this.now.getHours() + 2);
   }
 
   ngOnInit() {

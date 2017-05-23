@@ -28,5 +28,4 @@ export class MyMatchesComponent implements OnInit {
       this.router.navigate(['login']);
     }
   }
-
 }

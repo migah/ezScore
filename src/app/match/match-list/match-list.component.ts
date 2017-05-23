@@ -15,13 +15,13 @@ export class MatchListComponent implements OnInit {
 
   constructor(private matchService: MatchService, private route: ActivatedRoute) {
     this.matches = matchService.getMatches();
-    this.getCategori();
+    this.getCategory();
   }
 
   ngOnInit() {
   }
 
-  getCategori() {
+  getCategory() {
     this.route.params.subscribe(params => {
       this.cat = params['cat'];
     });

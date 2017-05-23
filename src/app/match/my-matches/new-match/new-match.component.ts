@@ -30,7 +30,7 @@ export class NewMatchComponent implements OnInit {
     newMatch.team2Score = 0;
     newMatch.isFinished = false;
     newMatch.creatorId = this.authService.currentUserId();
-    newMatch.rounds = new Array<Round>();
+    newMatch.rounds = [];
     newMatch.rounds.push({team1score: 0, team2score: 0, roundNo: 1});
     this.matchService.addMatch(newMatch);
     this.router.navigate(['my-matches']);
