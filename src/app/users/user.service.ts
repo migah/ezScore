@@ -40,14 +40,25 @@ export class UserService {
     return this.af.database.object('users/' +$key);
   }
 
-  deleteUser($key : string) {
+  disableUser($key : string) {
     if ($key => !isUndefined) {
-      this.af.database.object('users/' + $key).remove();
-
+      this.getUser($key).subscribe(res => {
+        res.isDisabled = true;
+        this.editUser(res);
+      }).unsubscribe();
     }
   }
 
   editUser(user: User) {
     this.af.database.object('users/' + user.$key).update(user);
+  }
+
+  enableUser($key: string) {
+    if ($key => !isUndefined) {
+      let sub = this.getUser($key).subscribe(res => {
+        res.isDisabled = false;
+        this.editUser(res);
+      }).unsubscribe();
+    }
   }
 }

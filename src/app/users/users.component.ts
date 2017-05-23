@@ -46,7 +46,11 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(user: User) {
-    this.userService.deleteUser(user.$key);
+    this.userService.disableUser(user.$key);
+  }
+
+  enableUser(user: User) {
+    this.userService.enableUser(user.$key);
   }
 
   switchNewUser() {

@@ -5,4 +5,5 @@ export class User{
   $key: string;
   profile: Profile;
   role: Role;
+  isDisabled: boolean;
 }

@@ -33,6 +33,7 @@
   </md-card-content>
   <md-card-actions>
     <button md-button (click)="editUser(user)">Edit</button>
-    <button md-button (click)="deleteUser(user)">Delete</button>
+    <button md-button *ngIf="!user.isDisabled" (click)="deleteUser(user)">Disable</button>
+    <button md-button *ngIf="user.isDisabled"(click)="enableUser(user)">Re-enable</button>
   </md-card-actions>
 </md-card>

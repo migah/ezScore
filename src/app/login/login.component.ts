@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {AuthService} from "./auth.service";
 import {AuthUser} from "./auth-user";
 import {MdSnackBar} from "@angular/material";
+import {UserService} from "../users/user.service";
 
 @Component({
   selector: 'app-login',
@@ -10,11 +11,15 @@ import {MdSnackBar} from "@angular/material";
 })
 export class LoginComponent implements OnInit {
 
-  loginError: string;
   tryingToLogIn: boolean;
-  constructor(private authService: AuthService, private router: Router, private snackBar: MdSnackBar) { }
+  constructor(private authService: AuthService, private router: Router, private snackBar: MdSnackBar, private userService: UserService) { }
 
   ngOnInit() {
+    this.authService.isUserLoggedIn().subscribe(res => {
+      if (res) {
+        this.router.navigate(['']);
+      }
+    });
   }
 
   login(aUser: AuthUser) {
@@ -22,8 +27,16 @@ export class LoginComponent implements OnInit {
     this.authService.login(aUser.email, aUser.password)
       .subscribe(
         (user) => {
-          this.loginError = null;
-          this.router.navigate([""]);
+          this.userService.getUser(user.uid).subscribe(user => {
+            if (user.isDisabled) {
+              this.authService.logout();
+              this.snackBar.open("User is disabled", "OK", {
+                duration: 3000,
+              })
+            } else {
+              this.router.navigate([""]);
+            }
+          })
         },
         (err) => {
           this.snackBar.open("Username or password is incorrect", "OK", {
