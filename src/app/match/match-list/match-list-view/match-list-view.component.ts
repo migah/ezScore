@@ -50,8 +50,10 @@ export class MatchListViewComponent implements OnInit {
   }
 
   goToEdit($key: string) {
-    if (!this.authService.isUserLoggedIn())
-      return;
+    this.authService.isUserLoggedIn().subscribe(res => {
+      if (!res)
+        return;
+    });
     this.authService.isCurrentUserAdmin().subscribe(res => {
       if (res) {
         this.router.navigate(['my-matches/edit/' + $key]);
