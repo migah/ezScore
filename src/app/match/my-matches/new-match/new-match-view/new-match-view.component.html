@@ -6,10 +6,10 @@
     <input mdInput type="text" placeholder="Team 2" [(ngModel)]="newMatch.team2">
   </md-input-container>
   <md-input-container>
-    <input mdInput type="datetime-local" placeholder="Start time" [(ngModel)]="time">
+    <input mdInput type="datetime-local" placeholder="Start time" [(ngModel)]="newMatch.startTime">
   </md-input-container>
-  <md-select placeholder="Sport" [(ngModel)]="sport">
-    <md-option *ngFor="let sport of sports" [value]="sport">
+  <md-select placeholder="Sport" [(ngModel)]="newMatch.sport">
+    <md-option *ngFor="let sport of sports | async" [value]="sport">
       {{sport.name}}
     </md-option>
   </md-select>

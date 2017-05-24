@@ -3,7 +3,7 @@
     <md-option value="{{null}}">
       All
     </md-option>
-    <md-option *ngFor="let sport of sports" [value]="sport">
+    <md-option *ngFor="let sport of sports | async" [value]="sport">
       {{sport.name}}
     </md-option>
   </md-select>

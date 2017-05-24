@@ -4,6 +4,9 @@ import {MatchService} from "../../match.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../login/auth.service";
 import {Round} from "../../round";
+import {Sport} from "../../../filter/sport";
+import {FilterService} from "../../../filter/filter.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'ez-new-match',
@@ -11,7 +14,9 @@ import {Round} from "../../round";
 })
 export class NewMatchComponent implements OnInit {
 
-  constructor(private matchService: MatchService, private authService: AuthService, private router: Router) {
+  sports: Observable<Sport[]>;
+
+  constructor(private matchService: MatchService, private authService: AuthService, private router: Router, private filterService: FilterService) {
   }
 
   ngOnInit() {
@@ -19,6 +24,7 @@ export class NewMatchComponent implements OnInit {
       if (!res)
         this.router.navigate(['login']);
     });
+    this.sports = this.filterService.getSports();
   }
 
   addMatch(newMatch: Match) {

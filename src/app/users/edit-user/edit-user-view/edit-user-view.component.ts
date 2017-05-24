@@ -13,7 +13,7 @@ export class EditUserViewComponent implements OnInit {
   user: User;
 
   @Input()
-  roles: Observable<Role[]>
+  roles: Observable<Role[]>;
 
   @Output('editUser')
   tryEditEmitter = new EventEmitter<User>();

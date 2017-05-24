@@ -17,14 +17,17 @@ export class MyMatchesViewComponent implements OnInit {
   @Input()
   userId: string;
 
-  constructor(private router: Router, private matchService: MatchService) {
+  @Output("goToEdit")
+  tryEditEmitter = new EventEmitter<string>();
+
+  constructor(private matchService: MatchService) {
   }
 
   ngOnInit() {
   }
 
   goToEdit($key: string) {
-    this.router.navigate(['my-matches/edit/' + $key]);
+    this.tryEditEmitter.emit($key);
   }
 
   live(match: Match) : boolean {

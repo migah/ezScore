@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
 import {Match} from "../match";
 import {MatchService} from "../match.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {FilterService} from "../../filter/filter.service";
+import {Sport} from "../../filter/sport";
+import {AuthService} from "../../login/auth.service";
 
 @Component({
   selector: 'ez-match-list',
@@ -11,10 +14,12 @@ import {ActivatedRoute} from "@angular/router";
 export class MatchListComponent implements OnInit {
 
   matches: Observable<Match[]>;
+  sports: Observable<Sport[]>;
   cat: string;
 
-  constructor(private matchService: MatchService, private route: ActivatedRoute) {
+  constructor(private matchService: MatchService, private route: ActivatedRoute, private filterService: FilterService, private authService: AuthService, private router: Router) {
     this.matches = matchService.getMatches();
+    this.sports = filterService.getSports();
     this.getCategory();
   }
 
@@ -27,4 +32,15 @@ export class MatchListComponent implements OnInit {
     });
   }
 
+  goToEdit($key: string) {
+    this.authService.isUserLoggedIn().subscribe(res => {
+      if (!res)
+        return;
+    });
+    this.authService.isCurrentUserAdmin().subscribe(res => {
+      if (res) {
+        this.router.navigate(['my-matches/edit/' + $key]);
+      }
+    });
+  }
 }

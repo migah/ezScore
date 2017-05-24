@@ -26,4 +26,8 @@ export class MyMatchesComponent implements OnInit {
       }
     });
   }
+
+  goToEdit($key: string) {
+    this.router.navigate(['my-matches/edit/' + $key]);
+  }
 }

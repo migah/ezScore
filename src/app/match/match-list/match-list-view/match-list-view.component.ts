@@ -13,7 +13,6 @@ import {MatchService} from "../../match.service";
 })
 export class MatchListViewComponent implements OnInit {
 
-  sports: Sport[];
   sport: Sport;
   searchTerm: string;
 
@@ -23,8 +22,13 @@ export class MatchListViewComponent implements OnInit {
   @Input()
   cat: string;
 
-  constructor(private router: Router, private filterService: FilterService, private matchService: MatchService, private authService: AuthService) {
-    filterService.getSports().subscribe(sports => this.sports = sports);
+  @Input()
+  sports: Observable<Sport[]>;
+
+  @Output('goToEdit')
+  tryEditEmitter = new EventEmitter<string>();
+
+  constructor(private matchService: MatchService) {
   }
 
   ngOnInit() {
@@ -50,14 +54,6 @@ export class MatchListViewComponent implements OnInit {
   }
 
   goToEdit($key: string) {
-    this.authService.isUserLoggedIn().subscribe(res => {
-      if (!res)
-        return;
-    });
-    this.authService.isCurrentUserAdmin().subscribe(res => {
-      if (res) {
-        this.router.navigate(['my-matches/edit/' + $key]);
-      }
-    });
+    this.tryEditEmitter.emit($key);
   }
 }

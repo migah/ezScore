@@ -12,7 +12,6 @@ import {AuthService} from "../../login/auth.service";
 export class MatchEditComponent implements OnInit {
 
   match: Match;
-  isAdmin: boolean;
 
   constructor(private route: ActivatedRoute, private matchService: MatchService, private router: Router, private snackBar: MdSnackBar, private authService: AuthService) { }
 

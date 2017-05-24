@@ -17,7 +17,7 @@ import {AuthService} from "../login/auth.service";
 export class UsersComponent implements OnInit {
 
   users: Observable<User[]>;
-  roles: Role[];
+  roles: Observable<Role[]>;
   newUser: boolean;
   userNew: User;
   initialProfile: Profile;
@@ -26,7 +26,7 @@ export class UsersComponent implements OnInit {
 
   constructor(private authService: AuthService, private userService : UserService, private roleService: RoleService, private router: Router) {
     this.users = userService.getUsers();
-    roleService.getRoles().subscribe(roles => this.roles = roles);
+    this.roles = roleService.getRoles();
     this.newUser = false;
     this.userNew = new User();
     this.initialProfile = new Profile();

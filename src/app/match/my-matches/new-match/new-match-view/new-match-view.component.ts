@@ -1,9 +1,7 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {Match} from "../../../match";
-import {AuthService} from "../../../../login/auth.service";
 import {Sport} from "../../../../filter/sport";
-import {FilterService} from "../../../../filter/filter.service";
-import {Round} from "../../../round";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'ez-new-match-view',
@@ -12,24 +10,21 @@ import {Round} from "../../../round";
 export class NewMatchViewComponent implements OnInit {
 
   newMatch: Match;
-  time: Date;
-  sport: Sport;
-  sports: Sport[];
+
+  @Input()
+  sports: Observable<Sport[]>;
 
   @Output('addMatch')
   tryCreateMatch = new EventEmitter<Match>();
 
-  constructor(private authService: AuthService, private filterService: FilterService) {
+  constructor() {
     this.newMatch = new Match();
-    filterService.getSports().subscribe(sports => this.sports = sports);
   }
 
   ngOnInit() {
   }
 
   addMatch() {
-    this.newMatch.startTime = this.time;
-    this.newMatch.sport = this.sport;
     this.tryCreateMatch.emit(this.newMatch)
   }
 }

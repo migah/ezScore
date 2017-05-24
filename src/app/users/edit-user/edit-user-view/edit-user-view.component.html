@@ -1,12 +1,9 @@
-<md-card>
+<md-card *ngIf="user">
   <md-card-content>
-    <i class="fa fa-envelope-o"></i>
-    <md-input-container *ngIf="user">
-      <input  mdInput type="text" [(ngModel)]="user.profile.email">
-    </md-input-container>
+    <i class="fa fa-envelope-o"></i> {{user.profile.email}}
     <br>
     <i class="fa fa-user"></i>
-      <md-select placeholder="Role" [(ngModel)]="user.role" *ngIf="user">
+      <md-select placeholder="Role" [(ngModel)]="user.role">
         <md-option *ngFor="let role of roles | async" [value]="role">
           {{role.name}}
         </md-option>
