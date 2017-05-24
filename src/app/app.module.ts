@@ -31,6 +31,8 @@ import {FilterService} from "./filter/filter.service";
 import { NewMatchComponent } from './match/my-matches/new-match/new-match.component';
 import { NewMatchViewComponent } from './match/my-matches/new-match/new-match-view/new-match-view.component';
 import { HomeViewComponent } from './home/home-view/home-view.component';
+import { EditProfileComponent } from './users/edit-profile/edit-profile.component';
+import { EditProfileViewComponent } from './users/edit-profile/edit-profile-view/edit-profile-view.component';
 
 export const firebaseLoginConfig = {
   provider: AuthProviders.Password,
@@ -53,7 +55,8 @@ const routes: Routes = [
   { path: 'matches/:cat', component: MatchListComponent},
   { path: 'my-matches/edit/:id', component: MatchEditComponent},
   { path: 'my-matches', component: MyMatchesComponent},
-  { path: 'my-matches/new', component: NewMatchComponent}
+  { path: 'my-matches/new', component: NewMatchComponent},
+  { path: 'editprofile', component: EditProfileComponent}
 ];
 
 @NgModule({
@@ -74,7 +77,9 @@ const routes: Routes = [
     MyMatchesViewComponent,
     NewMatchComponent,
     NewMatchViewComponent,
-    HomeViewComponent
+    HomeViewComponent,
+    EditProfileComponent,
+    EditProfileViewComponent
   ],
   imports: [
     BrowserModule,

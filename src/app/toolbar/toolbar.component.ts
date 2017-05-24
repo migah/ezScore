@@ -36,4 +36,8 @@ export class ToolbarComponent implements OnInit {
     this.isAdmin = false;
     this.authService.logout().subscribe(() => this.router.navigate(['']))
   }
+
+  goToEdit() {
+    this.router.navigate(['editprofile'])
+  }
 }

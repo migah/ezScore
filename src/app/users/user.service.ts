@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {User} from "./user";
 import {isUndefined} from "util";
 import {firebaseConfig} from "../app.module";
+import {Profile} from "./profile";
 let firebase = require("firebase");
 
 @Injectable()

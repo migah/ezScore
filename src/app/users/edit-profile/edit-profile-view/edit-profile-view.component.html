@@ -1,0 +1,10 @@
+<md-card *ngIf="user">
+  <md-card-content>
+    <md-input-container>
+      <input mdInput type="text" placeholder="Email" [(ngModel)]="user.profile.email">
+    </md-input-container>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button (click)="tryEdit()">Edit profile</button>
+  </md-card-actions>
+</md-card>

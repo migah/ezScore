@@ -49,6 +49,12 @@ export class AuthService {
     return id;
   }
 
+  editEmail(email: string) : Observable<any> {
+    return this.currentUser().switchMap(res =>
+      Observable.fromPromise(<Promise<any>> res.auth.updateEmail(email))
+    );
+  }
+
   logout(): Observable<void> {
     let promise = <Promise<any>> this.af.auth.logout();
     return Observable.fromPromise(promise);
