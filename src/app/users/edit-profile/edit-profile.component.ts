@@ -33,7 +33,7 @@ export class EditProfileComponent implements OnInit {
         this.router.navigate(['']);
       },
       (err) => {
-        this.snackBar.open(err, "LOL", {
+        this.snackBar.open(err, "OK", {
           duration: 3000
         });
       },

@@ -1,7 +1,6 @@
 <md-card *ngIf="user">
   <md-card-content>
     <i class="fa fa-envelope-o"></i> {{user.profile.email}}
-    <br>
     <i class="fa fa-user"></i>
       <md-select placeholder="Role" [(ngModel)]="user.role">
         <md-option *ngFor="let role of roles | async" [value]="role">
